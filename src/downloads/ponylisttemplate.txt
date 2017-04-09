@@ -1,0 +1,111 @@
+Deviantart: Test1
+Deviantart: Test2
+Deviantart: Test3
+Deviantart: Test4
+Deviantart: Test5
+
+<b>Hello World</b>
+
+<!--INSET RANDOM PONY HERE-->
+
+<randomtags></randomtags> - Global Tags
+<randomname></randomname> - Random Pony Name
+<randomimg></randomimg> - Random Pony IMG
+<randomsystem> - Final Random DIV
+
+<!--INSET PONY HERE-->
+
+<ponytags></ponytags> - Pony Tags
+<ponyname></ponyname> - Pony Name
+<ponyimage></ponyimage> - Pony IMG
+<datapony></datapony> - Data Pony
+<ponyid></ponyid> - Pony ID
+<baseurl></baseurl> - Base URL
+
+
+===============================================================================================
+
+URL Tags:
+
+
+Deviantart
+
+----------------------------------------
+
+<a deviantart-base[1]="Test">Test1</a> <-- Get Line 1
+<a deviantart-base[2]="Test">Test2</a> <-- Get Line 2
+<a deviantart-base[3]="Test">Test3</a> <-- Get Line 3
+<a deviantart-base[4]="Test">Test4</a> <-- Get Line 4
+<a deviantart-base[5]="Test">Test5</a> <-- Get Line 5
+
+Result: href="http://test1.deviantart.com/"
+
+-----------------------------------------
+
+<img deviantart-orig=".../.../file1.png">
+<img deviantart-img=".../.../file2.png">
+<img deviantart-pre=".../.../file3.png">
+
+Result: src="https://orig01.deviantart.net/.../.../file1.png"
+
+-----------------------------------------
+
+deviantart-orig = https://orig01.deviantart.net/
+
+==================================================================================================
+
+
+File Base
+
+------------------------------------------------------------
+
+File: www.test.com.br/yay/ponylist.txt
+
+<img file-base(src)="file.jpg">
+<a file-base(href)="myprofile.html">Yay</a>
+
+Result: href="www.test.com.br/yay/file.jpg"
+
+------------------------------------------------------------
+
+<img file-base[2](src)="file.jpg">
+
+Result: src="www.test.com.br/file.jpg"
+
+MIN: [2]
+MAX: [10]
+
+------------------------------------------------------------
+
+file-base = www.test.com.br/yay/
+
+
+
+
+
+
+
+============================================================================================================
+
+ponycode.txt TEMPLATE
+
+BASE PONY WHITELIST
+
+deviantart-img/
+deviantart-orig/
+deviantart-pre/
+
+
+deviantart-orig/387d/f/2015/025/f/7/jackie_and_lack__photo_fail_by_jackieguitabox-d8erual.png
+Result: https://orig01.deviantart.net/387d/f/2015/025/f/7/jackie_and_lack__photo_fail_by_jackieguitabox-d8erual.png
+
+
+
+Enable Reverse IMG to Left Images:
+(Ativar Imagem Reversa para Left Images:)
+
+Please, add the first line of file with this...
+(Favor, adicione a primeira linha do arquivo com isso...)
+
+{"autoreverse": true},
+
