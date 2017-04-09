@@ -324,12 +324,6 @@ ponydataspawn = ponydataspawn
 //URL SRC BASE Generator
 
 ponydataspawn = ponydataspawn
-
-.replace(/source-base-RoosterDragon\(href\)=\"/g, 'href="https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/')
-.replace(/source-base-RoosterDragon\(src\)=\"/g, 'src="https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/')
-.replace(/source-base-RoosterDragon\(href\)=\'/g, "href='https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")
-.replace(/source-base-RoosterDragon\(url\)/g, "https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")
-
 .replace(/source-base\(href\)=\"/g, 'href="https://jackieapkon.github.io/Browser-Ponies/')
 .replace(/source-base\(src\)=\"/g, 'src="https://jackieapkon.github.io/Browser-Ponies/')
 .replace(/source-base\(href\)=\'/g, "href='https://jackieapkon.github.io/Browser-Ponies/")

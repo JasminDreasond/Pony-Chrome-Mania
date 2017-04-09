@@ -1,0 +1,173 @@
+"titlepage": "Test",
+
+"confirmalertsystem": "Please confirm your action:",
+"addnewsystemnow": "Group Name:",
+"warnstartdatenow": "Start Date?",
+"warnponiescompleteld": "Complete!",
+
+
+
+"removeglobalponies30": "Undo",
+
+
+"infobackup": "Click in export for you send a code to Text Area, or in import for you send code to system. Please, not send modified code!",
+"backupimport": "Import",
+"backupexport": "Export",
+
+
+
+"baseurlappendhere": "Convert - Create Code",
+"ponycodeappendhere": "Code Options - URL",
+
+
+
+"refreshsystem": "File Update",
+"infoautake1": "Auto Update",
+"infoautake2": "WARN: Enable only with reliable url!",
+"infoautake3": "Force Whitelist",
+
+
+
+"customcssstsk": "Custom CSS:",
+"changelgponycode1": "Pony Code",
+"changelgbasefolder": "Base Folder:",
+"changelgponyini": "Pony (pony.ini):",
+"changelginteractions1": "Interactions (interactions.ini):",
+"changelgponylist": "Pony List:",
+"changelgponycode2": "Pony Code:",
+"changelginteractions2": "Interactions:",
+"changelgcustomcss": "Custom CSS:",
+"changelgcustomlanguage": "Custom Language:",
+"changelgrefreshwarn": "Refresh Warn:",
+
+
+
+"changelgfileponylist": "Pony List - File HTML",
+"changelgfileponycode": "Pony Code - File .txt",
+"changelgfileinteractions": "Interactions - File .txt",
+"changelgfilecssfile": "Custom CSS - File .css",
+"changelgfiletemplatehtml": "Template Pony List - FILE",
+"changelgfiletemplatecss": "Template Custom CSS - FILE",
+"changelgfiletemplatelanguage": "Template Custom Language - FILE",
+
+
+
+"urlonponies": "http://youhere.com/",
+"urloffponies": "http://youhere1.com/, http://youhere2.com/, http://youhere3.com/",
+"ponylistconfig": "Insert a Pony Code",
+"baseconfig2": "Insert your ponies",
+"baseconfig1": "Insert your interactions",
+"customcss": "Insert a CSS",
+"customlanguage": "Insert a Language",
+
+
+
+"errorponycode": "ERROR! Insecure code or invalid!",
+"ponyerrorss": "Invalid File!",
+
+
+
+"enableaudio": "Enable Audio",
+"hasaudio": "(Your browser need supports HTML 5 Audio.)",
+
+"showfps": "Show Frames per Second",
+
+"progressbar": "Show Progress Bar",
+
+"dontspeak": "Never Speak",
+
+"interactionsenabled": "Enable interactions.ini file",
+
+"browserponies30globalek": "Enable Global",
+
+
+
+"testcolors": "Example Progress Bar",
+
+"base": "Base URL:",
+
+"speed": "Speed Multiplier:",
+
+"speak": "Random Speak Probability:",
+
+"volume": "Volume:",
+
+"fps": "Frames per Second:",
+
+"fade": "Fade Duration:",
+
+"progressbarcolor": "Progress Bar Color:",
+
+"count": "Count: ",
+
+"restartcolors": "Default Color",
+
+"customlgnamecolorb": "Hex Color - B:",
+"customlgnamecolorp": "Hex Color - P:",
+"customlgnamecolork": "Hex Color - K:",
+"customlgnamecolorc": "Hex Color - C:",
+
+
+
+"aviso1": "Select a group to edit yours ponies.",
+"aviso2": "Your list of groups:",
+
+
+
+"openpnpage": "Ponies Factory",
+"openpnpageoc": "OCs Factory",
+"deviantart": "Deviantart",
+"tumblr": "Tumblr",
+"openmyprivacy": "Privacy Policy",
+
+
+
+"resetlinks": "Clean",
+"updateconfig": "Update",
+"addconfig": "Add",
+"opendonate": "Donate",
+"openbackup": "Backup",
+"resetlinks2": "Reset",
+"thanksfordonate": "Thanks for your Donation!",
+
+
+
+"taglistname": "Tag List",
+"baselistname": "Registered Urls List",
+"remover": "Remove",
+"openurl": "Open URL",
+"optionspage": "Options Page",
+"filecenterpage": "File Center",
+"saveponies": "Save Ponies",
+"wariningnothing": "WARNING: Please select an group!",
+"searchtext": "Search:",
+"searchopenlist": "{Tag List}",
+"getbaseurl": "{Base URL}",
+"ponycategory": "Category",
+"resetallponies": "Set all Ponies to 0",
+
+
+
+"confirmbaseconfigs": "Confirm",
+"helpbaseconfigs": "Help",
+"cancelbaseconfigs": "Cancel",
+"closebaseconfigs": "Close",
+"ponyname": "Name",
+
+
+
+
+"contextcompletewarn": "Complete!",
+"contextcustomcss2": "Please confirm your action: Reset - Custom CSS",
+"contextcustomcfg2": "Please confirm your action: Reset - CFG",
+"contextcustomlanguage2": "Favor confirme sua ação: Resetar - Custom Language",
+"contextcustomcss": "Reset - Custom CSS",
+"contextcustomlanguage": "Reset - Custom Language",
+"contextcustomcfg": "Reset - CFG",
+"contextnewtab": "Options (Pop-Up)",
+
+
+
+
+"copyright": "© Test - 2016 Test",
+"translationcopyright": "Translation to English made by Test"
