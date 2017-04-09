@@ -8,17 +8,8 @@ An extension that gives you absolute freedom to use the codes any way you want, 
 
 Translation made by: Raf109
 
-==============================
 
-Deviantart
 
-http://pony-chrome-mania.deviantart.com/
-
-==============================
-
-This extension have an Privacy Policy.
-
-==============================
 Credits
 
 Font: Equestria por Pixel Sagas
