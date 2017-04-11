@@ -2,19 +2,19 @@ var specialpagesource = true
 
 function basicremovebppage(){	
 
-$("h2:contains(What is this?)").css({'display': 'none'});
-$("h2:contains(Short URL)").css({'display': 'none'});
-$("h2:contains(Make a Bookmarklet)").css({'display': 'none'});
-$("p:contains(Browser Ponies lets you place )").css({'display': 'none'});
-$("p:contains(This is a reimplementation of )").css({'display': 'none'});
-$("p:contains(Browser Ponies work best with )").css({'display': 'none'});
-$("p:contains(The artwork used is from the )").css({'display': 'none'});
-$("p:contains(You can put ponies on a website by simply putting )").css({'display': 'none'});
-$("p:contains(Note that not all websites allow embedding in an iframe )").css({'display': 'none'});
-$("p:contains(You can also bookmark the control links above in order to have control over ponies on any website.)").css({'display': 'none'});
-$("h2:contains(Best Pony)").css({'display': 'none'});
-$("p:contains(What is your favourite pony? Resort the list to tell me!)").css({'display': 'none'});
-$("iframe").css({'display': 'none'});
+$("h2:contains(What is this?)").addClass('hide');
+$("h2:contains(Short URL)").addClass('hide');
+$("h2:contains(Make a Bookmarklet)").addClass('hide');
+$("p:contains(Browser Ponies lets you place )").addClass('hide');
+$("p:contains(This is a reimplementation of )").addClass('hide');
+$("p:contains(Browser Ponies work best with )").addClass('hide');
+$("p:contains(The artwork used is from the )").addClass('hide');
+$("p:contains(You can put ponies on a website by simply putting )").addClass('hide');
+$("p:contains(Note that not all websites allow embedding in an iframe )").addClass('hide');
+$("p:contains(You can also bookmark the control links above in order to have control over ponies on any website.)").addClass('hide');
+$("h2:contains(Best Pony)").addClass('hide');
+$("p:contains(What is your favourite pony? Resort the list to tell me!)").addClass('hide');
+$("iframe").addClass('hide');
 
 
 $("p:contains(In Internet Explorer I managed to control GIF animation playback using iframes)").addClass("advancedinfo");
@@ -64,46 +64,46 @@ $("#openlicenceuser").click(openlicense);
 if($(location).attr('href').indexOf('?editormode') > -1){
 
 basicremovebppage();
-$("h3:contains(Using your own ponies)").css({'display': 'none'});
-$("p:contains(If you want to use your own ponies you can convert the INI files to JavaScript using)").css({'display': 'none'});
-$("p:contains(This currently only works with Firefox and Chrome)").css({'display': 'none'});
-$("h3:contains(Your Ponies:)").css({'display': 'none'});
-$("[class='dropzone']").css({'display': 'none'});
-$("h4:contains(Your Ponies:)").css({'display': 'none'});
-$("p:contains(As a next step you may need to adapt the URLs)").css({'display': 'none'});
-$("p:contains(If the files are all at some more or less random location)").css({'display': 'none'});
-$("p:contains(As a third option you can also embed the files directly)").css({'display': 'none'});
-$("h4:contains(Your Interacions:)").css({'display': 'none'});
-$("p:contains(Base URL:)").css({'display': 'none'});
-$("[onclick='inisToJS();']").css({'display': 'none'});
-$("p:contains(your-ponies.js:)").css({'display': 'none'});
-$("h2:contains(Download)").css({'display': 'none'});
-$("p:contains(You can download the source without images/sounds here)").css({'display': 'none'});
-$("p:contains(Or with images/sounds)").css({'display': 'none'});
-$("p:contains(Of course you need to replace http://example.org/your-ponies.js)").css({'display': 'none'});
-$("p:contains(If you want to you can also copy the browserponies.js)").css({'display': 'none'});
-$("p:contains(Note that none of the images are made by me.)").css({'display': 'none'});
-$("p:contains(A git repository can be found here)").css({'display': 'none'});
-$("p:contains(Then put the contents of the text area above into a file called e.g. )").css({'display': 'none'});
-$("pre:contains(http://example.org/your-ponies.js)").css({'display': 'none'});
+$("h3:contains(Using your own ponies)").addClass('hide');
+$("p:contains(If you want to use your own ponies you can convert the INI files to JavaScript using)").addClass('hide');
+$("p:contains(This currently only works with Firefox and Chrome)").addClass('hide');
+$("h3:contains(Your Ponies:)").addClass('hide');
+$("[class='dropzone']").addClass('hide');
+$("h4:contains(Your Ponies:)").addClass('hide');
+$("p:contains(As a next step you may need to adapt the URLs)").addClass('hide');
+$("p:contains(If the files are all at some more or less random location)").addClass('hide');
+$("p:contains(As a third option you can also embed the files directly)").addClass('hide');
+$("h4:contains(Your Interacions:)").addClass('hide');
+$("p:contains(Base URL:)").addClass('hide');
+$("[onclick='inisToJS();']").addClass('hide');
+$("p:contains(your-ponies.js:)").addClass('hide');
+$("h2:contains(Download)").addClass('hide');
+$("p:contains(You can download the source without images/sounds here)").addClass('hide');
+$("p:contains(Or with images/sounds)").addClass('hide');
+$("p:contains(Of course you need to replace http://example.org/your-ponies.js)").addClass('hide');
+$("p:contains(If you want to you can also copy the browserponies.js)").addClass('hide');
+$("p:contains(Note that none of the images are made by me.)").addClass('hide');
+$("p:contains(A git repository can be found here)").addClass('hide');
+$("p:contains(Then put the contents of the text area above into a file called e.g. )").addClass('hide');
+$("pre:contains(http://example.org/your-ponies.js)").addClass('hide');
 	
 }
 
 if($(location).attr('href').indexOf('?custommode') > -1){
 
 basicremovebppage();
-$("#bookmarkswrapper").css({'display': 'none'});
-$("h3:contains(Bookmarks Menu)").css({'display': 'none'});
-$("p:contains(If you'd like you can download a bookmarks file)").css({'display': 'none'});
-$("table:contains(Width)").css({'display': 'none'});
-$("p:contains(Or if you don't want to include my script directly in your webp)").css({'display': 'none'});
-$("p:contains(Or paste this into your webpage)").css({'display': 'none'});
-$("p:contains(Choose your ponies belown and then drag this link into your Bookmark Toolbar)").css({'display': 'none'});
-$("p:contains(Click it whenever you feel a website needs more ponies)").css({'display': 'none'});
-$("p:contains(Or if you don't want to include my script directly in your webpage you can use this embed code to confine the ponies into an iframe)").css({'display': 'none'});
-$("table:contains(Show Paddock)").css({'display': 'none'});
-$("#iframewrap").css({'display': 'none'});
+$("#bookmarkswrapper").addClass('hide');
+$("h3:contains(Bookmarks Menu)").addClass('hide');
+$("p:contains(If you'd like you can download a bookmarks file)").addClass('hide');
+$("table:contains(Width)").addClass('hide');
+$("p:contains(Or if you don't want to include my script directly in your webp)").addClass('hide');
+$("p:contains(Or paste this into your webpage)").addClass('hide');
+$("p:contains(Choose your ponies belown and then drag this link into your Bookmark Toolbar)").addClass('hide');
+$("p:contains(Click it whenever you feel a website needs more ponies)").addClass('hide');
+$("p:contains(Or if you don't want to include my script directly in your webpage you can use this embed code to confine the ponies into an iframe)").addClass('hide');
+$("table:contains(Show Paddock)").addClass('hide');
+$("#iframewrap").addClass('hide');
 
-$("#filterwrapper, #ponylist, #embedcode, #bookmarkletwrapper").css({'display': 'none'});
+$("#filterwrapper, #ponylist, #embedcode, #bookmarkletwrapper").addClass('hide');
 	
 }

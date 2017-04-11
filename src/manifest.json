@@ -3,7 +3,7 @@
 "short_name":"PC. Mania",
 "description":"__MSG_appDesc__",
  "default_locale": "en",
-"version":"2.1",
+"version":"2.2",
 "manifest_version":2,
 "background": {
       "page": "background.html"
@@ -15,7 +15,7 @@
       }
    },
    "permissions": ["background", "storage", "unlimitedStorage", "contextMenus"],
-   "options_page": "options.html",
+   "options_page": "index.html",
    "icons": {
       "128": "icons/icon_128.png",
       "16": "icons/icon_16.png",

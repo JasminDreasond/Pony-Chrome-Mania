@@ -299,7 +299,14 @@ ponydataspawn = ponydataspawn
 
 //Random System
 
-ponydataspawn = ponydataspawn.replace("<randomtags>", "<li id='littletagslist' data-categories='").replace("</randomtags>", "'>").replace("<randomname>", "<div class='ponyname ponynamefirst'>").replace("</randomname>", "</div><a id='searchopenlist'>{Tag List}</a>").replace("<randomimg>", "<div class='ponyimg'><img src='").replace("</randomimg>", "'></div>").replace("<randomsystem>", "<label for='_count'>Count: </label><input type='number' min='0' class='number' name='countrandom' value='0' id='pony_random'></li>");
+ponydataspawn = ponydataspawn
+.replace("<randomtags>", "<li id='littletagslist' data-categories='")
+.replace("</randomtags>", "'>")
+.replace("<randomname>", "<div class='ponyname ponynamefirst'>")
+.replace("</randomname>", "</div><a id='searchopenlist'>{Tag List}</a>")
+.replace("<randomimg>", "<div class='ponyimg'><img src='")
+.replace("</randomimg>", "'></div>")
+.replace("<randomsystem>", "<label for='_count'>Count: </label><input type='number' min='0' class='number' name='countrandom' value='0' id='pony_random'></li>");
 
 //Pony Generator
 ponydataspawn = ponydataspawn
@@ -329,6 +336,11 @@ ponydataspawn = ponydataspawn
 .replace(/source-base-RoosterDragon\(src\)=\"/g, 'src="https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/')
 .replace(/source-base-RoosterDragon\(href\)=\'/g, "href='https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")
 .replace(/source-base-RoosterDragon\(url\)/g, "https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")
+
+.replace(/source-base-JackieApkon\(href\)=\"/g, 'https://raw.githubusercontent.com/JackieApkon/Pony-Chrome-Mania/master/my_ponies/')
+.replace(/source-base-JackieApkon\(src\)=\"/g, 'src="https://raw.githubusercontent.com/JackieApkon/Pony-Chrome-Mania/master/my_ponies/')
+.replace(/source-base-JackieApkon\(href\)=\'/g, "https://raw.githubusercontent.com/JackieApkon/Pony-Chrome-Mania/master/my_ponies/")
+.replace(/source-base-JackieApkon\(url\)/g, "https://raw.githubusercontent.com/JackieApkon/Pony-Chrome-Mania/master/my_ponies/")
 
 .replace(/source-base\(href\)=\"/g, 'href="https://jackieapkon.github.io/Browser-Ponies/')
 .replace(/source-base\(src\)=\"/g, 'src="https://jackieapkon.github.io/Browser-Ponies/')
@@ -494,8 +506,7 @@ ponyverikep(ponylistcode, settings, config);
 //Tag List Open
 
 function taglistopen(){
-if(openhelpclicks == false){
-$("#tagslistcomplete").removeClass("menuclosed");
+
 taglisthere = $("#littletagslist").attr("data-categories");
 taglisthereglobal = new RegExp(',', 'g');
 taglisthere = taglisthere.replace(taglisthereglobal, "<br>");
@@ -509,8 +520,8 @@ var ipker2 = $(this).attr("numberset");
 viewsystempk({"id": ipker1, "number": ipker2})
 })
 
-openhelpclicks = true
-}	
+$("#mytaglist").modal();
+	
 }
 
 //Clicks SET
@@ -1183,13 +1194,9 @@ chrome.storage.sync.set({browserponies30globalek: browserponies30globalek});
 
 //Pony List
 
-var openponylistclicks = false
-
 $("#ponycodeappendhere").click(function(){
-	
-if(openponylistclicks == false){
-	
-$("#hideponycode").addClass("antihidecodes");
+
+$("#myconfigcode").modal();
 
   chrome.storage.sync.get({
   ponylistcode: "",
@@ -1215,9 +1222,6 @@ $("#changelgponylist, #changelgponycode2, #changelgcustomcss").removeClass("whit
 if(basedevbasepony == true){$("#changelgponycode2").addClass("whitelistsystem");}
 if(basedevponylist == true){$("#changelgponylist").addClass("whitelistsystem");}
 if(basedevcustomcss == true){$("#changelgcustomcss").addClass("whitelistsystem");}
-
-openponylistclicks = true
-}
 
 })
 
@@ -1274,10 +1278,6 @@ if(optionclikedpk == true){location.reload(); return}
 languageset();
 loadextensionstart();
 
-$("#hideponycode").removeClass("antihidecodes");
-if(openponylistclicks == true){
-openponylistclicks = false
-}
 }
 
 //Recolher
@@ -1335,16 +1335,8 @@ daterefresh = config.daterefresh
 pkeconfirmpk(); dateupdatelocalset();
 })
 
-})
+$("body").css("pointer-events", "none");
 
-$("#ponylistconfigcancel").click(function(){
-$("#ponylistconfig").val("");
-$("#baseconfig1").val("");
-$("#baseconfig2").val("");
-$("#hideponycode").removeClass("antihidecodes");
-if(openponylistclicks == true){
-openponylistclicks = false
-}
 })
 
 $(".ponylistconfig, #ponycodeappendhere").bind("mouseover", function(){

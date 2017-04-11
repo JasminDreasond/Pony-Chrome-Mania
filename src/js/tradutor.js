@@ -46,6 +46,8 @@ $("#changelginteractions2").text("Interações:");
 $("#changelgcustomcss").text("CSS Personalizável:");
 $("#changelgcustomlanguage").text("Idioma Personalizável:");
 $("#changelgrefreshwarn").text("Alerta de Refresh:");
+$("#changelgponypage").text("Lista do Pônei:");
+$("#configmodal").text("Configurações");
 
 $("#changelgfileponylist").text("Lista de Pôneis - Arquivo .txt");
 $("#changelgfileponycode").text("Código Pônei - Arquivo .txt");
@@ -105,7 +107,8 @@ $("#resetlinks").val("Limpar");
 $("#updateconfig").val("Atualizar");
 $("#addconfig").val("Adicionar");
 $("#opendonate").val("Doar");
-$("#openbackup").val("Backup");
+$("[name='backupmsg']").val("Backup");
+$("[name='backupmsg2']").text("Backup");
 $("#resetlinks2").val("Resetar");
 
 $("#thanksfordonate").text("Obrigado pela sua Doação!");
@@ -117,7 +120,7 @@ $("#baselistname").text("Lista de URLs registradas");
 $("[value='Remove']").val("Remover");
 $("[value='Open URL']").val("Abrir URL");
 $("[name='optionspage']").text("Página de Opções");
-$("[name='filecenterpage']").text("Central de Arquivo");
+$("[name='filecenterpage'] div").text("Central de Arquivo");
 $("#saveponies").val("Salvar Pôneis");
 $("#wariningnothing").text("AVISO: Por Favor selecione um grupo!");
 $("#searchtext").text("Procurar:");
@@ -125,10 +128,12 @@ $("#searchopenlist").text("{Lista de Etiquetas}");
 $("[id='getbaseurl']").text("{Base URL}");
 $("[value='ponycategory']").text("Categoria");
 $("#resetallponies").val("Setar todos os pôneis para 0");
-$("[name='confirmbaseconfigs']").val("Confirmar");
+$("[name='confirmbaseconfigs']").text("Confirmar");
 $("[name='helpbaseconfigs']").val("Ajuda");
-$("[name='cancelbaseconfigs']").val("Cancelar");
-$("[name='closebaseconfigs']").val("Fechar");
+$("[name='helpbaseconfigs2']").text("Ajuda");
+$("#customcssstskconfirm").text("Converter CSS");
+$("[name='cancelbaseconfigs']").text("Cancelar");
+$("[name='closebaseconfigs']").text("Fechar");
 $("[value='ponyname']").text("Nome");
 $("#logo").addClass("logobr");
 
@@ -256,6 +261,9 @@ $("#changelginteractions2").text("Interactions:");
 $("#changelgcustomcss").text("Custom CSS:");
 $("#changelgcustomlanguage").text("Custom Language:");
 $("#changelgrefreshwarn").text("Refresh Warn:");
+$("#changelgponypage").text("Pony List:");
+$("#configmodal").text("Settings");
+
 
 $("#changelgfileponylist").text("Pony List - File .txt");
 $("#changelgfileponycode").text("Pony Code - File .txt");
@@ -315,7 +323,8 @@ $("#resetlinks").val("Clean");
 $("#updateconfig").val("Update");
 $("#addconfig").val("Add");
 $("#opendonate").val("Donate");
-$("#openbackup").val("Backup");
+$("[name='backupmsg']").val("Backup");
+$("[name='backupmsg2']").text("Backup");
 $("#resetlinks2").val("Reset");
 
 $("#thanksfordonate").text("Thanks for your Donation!");
@@ -327,7 +336,7 @@ $("#baselistname").text("Registered Urls List");
 $("[value='Remover']").val("Remove");
 $("[value='Abrir URL']").val("Open URL");
 $("[name='optionspage']").text("Options Page");
-$("[name='filecenterpage']").text("File Center");
+$("[name='filecenterpage'] div").text("File Center");
 $("#saveponies").val("Save Ponies");
 $("#wariningnothing").text("WARNING: Please select an group!");
 $("#searchtext").text("Search:");
@@ -335,10 +344,12 @@ $("#searchopenlist").text("{Tag List}");
 $("[id='getbaseurl']").text("{Base URL}");
 $("[value='ponycategory']").text("Category");
 $("#resetallponies").val("Set all Ponies to 0");
-$("[name='confirmbaseconfigs']").val("Confirm");
+$("[name='confirmbaseconfigs']").text("Confirm");
 $("[name='helpbaseconfigs']").val("Help");
-$("[name='cancelbaseconfigs']").val("Cancel");
-$("[name='closebaseconfigs']").val("Close");
+$("[name='helpbaseconfigs2']").text("Help");
+$("#customcssstskconfirm").text("Convert CSS");
+$("[name='cancelbaseconfigs']").text("Cancel");
+$("[name='closebaseconfigs']").text("Close");
 $("[value='ponyname']").text("Name");
 $("#logo").removeClass("logobr");
 
@@ -393,6 +404,8 @@ if (typeof customlanguagest.changelginteractions2 !== "undefined"){ $("#changelg
 if (typeof customlanguagest.changelgcustomcss !== "undefined"){ $("#changelgcustomcss").text(customlanguagest.changelgcustomcss); }
 if (typeof customlanguagest.changelgcustomlanguage !== "undefined"){ $("#changelgcustomlanguage").text(customlanguagest.changelgcustomlanguage); }
 if (typeof customlanguagest.changelgrefreshwarn !== "undefined"){ $("#changelgrefreshwarn").text(customlanguagest.changelgrefreshwarn); }
+if (typeof customlanguagest.changelgponypage !== "undefined"){ $("#changelgponypage").text(customlanguagest.changelgponypage); }
+if (typeof customlanguagest.configmodal !== "undefined"){ $("#configmodal").text(customlanguagest.configmodal); }
 
 if (typeof customlanguagest.changelgfileponylist !== "undefined"){ $("#changelgfileponylist").text(customlanguagest.changelgfileponylist); }
 if (typeof customlanguagest.changelgfileponycode !== "undefined"){ $("#changelgfileponycode").text(customlanguagest.changelgfileponycode); }
@@ -450,7 +463,8 @@ if (typeof customlanguagest.resetlinks !== "undefined"){ $("#resetlinks").val(cu
 if (typeof customlanguagest.updateconfig !== "undefined"){ $("#updateconfig").val(customlanguagest.updateconfig); }
 if (typeof customlanguagest.addconfig !== "undefined"){ $("#addconfig").val(customlanguagest.addconfig); }
 if (typeof customlanguagest.opendonate !== "undefined"){ $("#opendonate").val(customlanguagest.opendonate); }
-if (typeof customlanguagest.openbackup !== "undefined"){ $("#openbackup").val(customlanguagest.openbackup); }
+if (typeof customlanguagest.openbackup !== "undefined"){ $("[name='backupmsg']").val(customlanguagest.openbackup); }
+if (typeof customlanguagest.openbackup !== "undefined"){ $("[name='backupmsg2']").text(customlanguagest.openbackup); }
 if (typeof customlanguagest.resetlinks2 !== "undefined"){ $("#resetlinks2").val(customlanguagest.resetlinks2); }
 
 if (typeof customlanguagest.thanksfordonate !== "undefined"){ $("#thanksfordonate").text(customlanguagest.thanksfordonate); }
@@ -460,7 +474,7 @@ if (typeof customlanguagest.baselistname !== "undefined"){ $("#baselistname").te
 if (typeof customlanguagest.remover !== "undefined"){ $("[value='Remover']").val(customlanguagest.remover); }
 if (typeof customlanguagest.openurl !== "undefined"){ $("[value='Abrir URL']").val(customlanguagest.openurl); }
 if (typeof customlanguagest.optionspage !== "undefined"){ $("[name='optionspage']").text(customlanguagest.optionspage); }
-if (typeof customlanguagest.filecenterpage !== "undefined"){ $("[name='filecenterpage']").text(customlanguagest.filecenterpage); }
+if (typeof customlanguagest.filecenterpage !== "undefined"){ $("[name='filecenterpage'] div").text(customlanguagest.filecenterpage); }
 if (typeof customlanguagest.saveponies !== "undefined"){ $("#saveponies").val(customlanguagest.saveponies); }
 if (typeof customlanguagest.wariningnothing !== "undefined"){ $("#wariningnothing").text(customlanguagest.wariningnothing); }
 if (typeof customlanguagest.searchtext !== "undefined"){ $("#searchtext").text(customlanguagest.searchtext); }
@@ -468,10 +482,12 @@ if (typeof customlanguagest.searchopenlist !== "undefined"){ $("#searchopenlist"
 if (typeof customlanguagest.getbaseurl !== "undefined"){ $("[id='getbaseurl']").text(customlanguagest.getbaseurl); }
 if (typeof customlanguagest.ponycategory !== "undefined"){ $("[value='ponycategory']").text(customlanguagest.ponycategory); }
 if (typeof customlanguagest.resetallponies !== "undefined"){ $("#resetallponies").val(customlanguagest.resetallponies); }
-if (typeof customlanguagest.confirmbaseconfigs !== "undefined"){ $("[name='confirmbaseconfigs']").val(customlanguagest.confirmbaseconfigs); }
+if (typeof customlanguagest.confirmbaseconfigs !== "undefined"){ $("[name='confirmbaseconfigs']").text(customlanguagest.confirmbaseconfigs); }
 if (typeof customlanguagest.helpbaseconfigs !== "undefined"){ $("[name='helpbaseconfigs']").val(customlanguagest.helpbaseconfigs); }
-if (typeof customlanguagest.cancelbaseconfigs !== "undefined"){ $("[name='cancelbaseconfigs']").val(customlanguagest.cancelbaseconfigs); }
-if (typeof customlanguagest.closebaseconfigs !== "undefined"){ $("[name='closebaseconfigs']").val(customlanguagest.closebaseconfigs); }
+if (typeof customlanguagest.helpbaseconfigs !== "undefined"){ $("[name='helpbaseconfigs2']").val(customlanguagest.helpbaseconfigs); }
+if (typeof customlanguagest.helpbaseconfigs !== "undefined"){ $("#customcssstskconfirm").text(customlanguagest.customcssstskconfirm); }
+if (typeof customlanguagest.cancelbaseconfigs !== "undefined"){ $("[name='cancelbaseconfigs']").text(customlanguagest.cancelbaseconfigs); }
+if (typeof customlanguagest.closebaseconfigs !== "undefined"){ $("[name='closebaseconfigs']").text(customlanguagest.closebaseconfigs); }
 if (typeof customlanguagest.ponyname !== "undefined"){ $("[value='ponyname']").text(customlanguagest.ponyname); }
 
 if (typeof customlanguagest.copyright !== "undefined"){ $("#extracopyright").text(customlanguagest.copyright); }

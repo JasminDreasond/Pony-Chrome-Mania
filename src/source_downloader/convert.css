@@ -1,0 +1,21 @@
+body{
+background-color: #000;
+color: #C0C0C0;
+white-space:pre-wrap;
+padding: 25px;
+}
+
+a{font-weight: bold; color: #C0C0C0;}
+a:hover{text-decoration: none; color: #e6e6e6; cursor: pointer;}
+
+.lycker{color: #FFF; font-weight: bold;}
+
+.download_start{cursor: pointer; color: #FFF;}
+.download_start:hover{color: #DCDCDC;}
+
+.download_error, .error_system{color: red;}
+.download_complete{color: green;}
+
+.download_aborted{color: red;}
+
+::selection{background-color: #FFF !important; color: #3F3F3F !important;}

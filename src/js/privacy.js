@@ -58,7 +58,7 @@ $("#privacyallow2").click(privacy2);
 
 function startsystemokr(){
 chrome.extension.sendMessage({text:"acceptedprivacy"},function(reponse){if(reponse.type == "acceptedprivacyts"){}})
-window.open('options.html', '_top');
+window.open('index.html', '_top');
 }
 
 function startsystemokr2(){

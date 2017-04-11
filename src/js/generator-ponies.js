@@ -1207,7 +1207,7 @@ var BrowserPonies = (function () {
 						background:  spawnpony.brcolor1,
 						MozBorderRadius: '5px',
 						borderRadius:    '5px'
-					}}),
+					}, id: 'pc_m_bar'}),
 					label: tag('div', {style:{
 						position: 'absolute',
 						margin:          '0',
@@ -1217,7 +1217,7 @@ var BrowserPonies = (function () {
 						left:          '0px',
 						width:        '100%',
 						textAlign:  'center'
-					}})
+					}, id: 'pc_m_label'})
 				};
 				progressbar.barcontainer = tag('div', {style:{
 					margin:            '0',
@@ -1228,7 +1228,7 @@ var BrowserPonies = (function () {
 					background:  spawnpony.brcolor2,
 					MozBorderRadius: '5px',
 					borderRadius:    '5px'
-				}}, progressbar.bar);
+				}, id: 'pc_m_barcontainer'}, progressbar.bar);
 				progressbar.container = tag('div', {style:{
 					position:      'fixed',
 					width:         '450px',
@@ -1246,7 +1246,7 @@ var BrowserPonies = (function () {
 					boxShadow:    "2px 2px 12px rgba(0,0,0,0.4)",
 					MozBoxShadow: "2px 2px 12px rgba(0,0,0,0.4)",
 					zIndex: '10000000000'
-				}, onclick: function () {
+				}, id: 'pc_m_container', onclick: function () {
 					if (progressbar) {
 						progressbar.container.style.display = 'none';
 					}

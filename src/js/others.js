@@ -48,15 +48,6 @@ $("#testcolorshelp").click(function(){
 window.open('images/panelhelp.png', '_blank');
 })
 
-//Tag List
-
-$("#closetaglist").click(function(){
-if(openhelpclicks == true){
-$("#tagslistcomplete").addClass("menuclosed");
-openhelpclicks = false
-}
-})
-
 var openbaselistk = false
 
 //Base List
@@ -77,107 +68,117 @@ openbaselistk = true
 //Help List
 
 $("#baseconfighelp").click(function(){
-if(openhelpclicks == false){
-$("#helpconvert").removeClass("menuclosed");
-openhelpclicks = true
-}
+$("#myconvertcode").modal('toggle');
+$("#myconvertcodehelp").modal();
 })
 
-$("#closehelpconvert").click(function(){
-if(openhelpclicks == true){
-$("#helpconvert").addClass("menuclosed");
-openhelpclicks = false
-}
+$("#baseconfighelpclose").click(function(){
+$("#myconvertcode").modal();
+$("#myconvertcodehelp").modal('toggle');
 })
-
 
 
 $("#ponylistconfighelp").click(function(){
-if(openhelpclicks == false){
-$("#helpcode").removeClass("menuclosed");
-openhelpclicks = true
-}
+$("#myconfigcode").modal('toggle');
+$("#myconfigcodehelp").modal();
 })
 
 $("#closehelpcode").click(function(){
-if(openhelpclicks == true){
-$("#helpcode").addClass("menuclosed");
-openhelpclicks = false
-}
-})
-
-
-
-$("#opendonate").click(function(){
-if(openhelpclicks == false){
-$("#donatepage").removeClass("menuclosed");
-openhelpclicks = true
-}
-})
-
-$("#closeopendonate").click(function(){
-if(openhelpclicks == true){
-$("#donatepage").addClass("menuclosed");
-openhelpclicks = false
-}
+$("#myconfigcode").modal();
+$("#myconfigcodehelp").modal('toggle');
 })
 
 //Base URL
 
-var openbaseclicks = false
-
 $("#baseurlappendhere").click(function(){
-$("#convertponiescode, #convertponiescodebaseurl, #convertinteractionsscode, #customcssstskcode").val("");
-if(openbaseclicks == false){
-$("#hidebaseurl").addClass("antihidecodes");
-openbaseclicks = true
-}
+$("#convertponiescode, #convertponiescodebaseurl, #convertinteractionsscode, #customcssstskcode, #convertponylist").val("");
+$("#autoreversecodeenpx").prop("checked", false);
+
+$("#myconvertcode").modal();
 })
 
 
 //Ponies Code
 $("#baseconfigconfirmponycode").click(function(){
 
-//Replace System
+// Montar Get
+var pony_name = $("#convertponiescode").val().split('\n')[0];
+var pony_category = $("#convertponiescode").val().split('\n')[1];
+var pony_config = $("#convertponiescode").val().split('Interaction,')[0];
+var pony_interactions = $("#convertponiescode").val().replace(pony_config, '');
+
+var convertname_st = pony_name.replace('Name,', '');
+if((encodeURI(convertname_st).indexOf('%20') > -1) && (convertname_st.indexOf('"') == -1)){var convertname_st = '"'+convertname_st+'"'; var pony_config = pony_config.replace(pony_name, 'Name,'+convertname_st);}
+
+// Replace System
 var replaceponycode1 = new RegExp('"', 'g');
 var replaceponycode2 = new RegExp('\n', 'g');
 
-//Base
-var converponiescode = $("#convertponiescode").val();
+// Base
+var converponiescode = pony_config;
 var converponiescodebaseurl = $("#convertponiescodebaseurl").val();
-var converponiescodebaseurl = encodeURI(converponiescodebaseurl);
+if((converponiescodebaseurl.indexOf("deviantart-") > -1) || (converponiescodebaseurl.indexOf("file-base") > -1)){converponiescodebaseurl = ''; var whitelistdetect_pt = true;}
+else {var whitelistdetect_pt = false;}
 
 if(converponiescode == ""){return}
 
 
-//System
+// Generator Pony Code
 var converponiescode = converponiescode.replace(replaceponycode1, '\u005c"').replace(replaceponycode2, '\u005cn').replace('Name,', '{"ini": "Name,');
 var converponiescode = converponiescode.replace(converponiescode, ''+converponiescode+'\u005cn", "baseurl": "'+converponiescodebaseurl+'"}');
 
+
+// Auto Reverse
+if($("#autoreversecodeenpx").prop("checked") == true){
+var converponiescode = converponiescode.replace(/left\.png/g, "right.png").replace(/left\.gif/g, "right.gif");
+}
+
+
+// Entregar Valor Pony Config]
+var converponiescode_json = JSON.parse(converponiescode);
+
+// Entregar Pony Name Config
+
+if(whitelistdetect_pt == true){var getimg = '';}
+else if($("#convertponiescode").val().indexOf('.gif') > -1){
+var getimg = $("#convertponiescode").val().split('.gif')[0];
+var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+getimg.lastIndexOf('"')).replace(/\"/g, "")+'.gif';
+}
+else if($("#convertponiescode").val().indexOf('.png') > -1){
+var getimg = $("#convertponiescode").val().split('.png')[0];
+var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+getimg.lastIndexOf('"')).replace(/\"/g, "")+'.png';
+}
+
+var ponyname_generator = 
+'<ponytags>'+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ')+'</ponytags>\n'+
+'<ponyname>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</ponyname>\n'+
+'<baseurl></baseurl>\n'+
+'<ponyimg>'+$("#convertponiescodebaseurl").val()+encodeURIComponent(pony_name.replace('Name,', ''))+'/'+getimg+'</ponyimg>\n'+
+'<datapony>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '')+'</datapony>\n'+
+'<ponyid>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n'
+;
+
+
+// Interações
+var converinteractionscode = pony_interactions;
+var replace_interactions_code = converinteractionscode.split(",")[1]+',\\"'+pony_name.replace('Name,', '')+'\\",';
+
+var converinteractionscode = converinteractionscode
+.replace(replaceponycode1, '\\"')
+.replace(replaceponycode2, '\\n\n')
+.replace("Interaction,", "")
+.replace(converinteractionscode.split(",")[1]+',', replace_interactions_code);
+
 //Result
-$("#convertponiescode").val(converponiescode);
 
 
 
-})
-
-
-
-//Interactions
-$("#baseconfigconfirminteractions").click(function(){
-	
-//Replace System
-var replaceponycode1 = new RegExp('"', 'g');
-var replaceponycode2 = new RegExp('\n', 'g');
-	
-//Base
-var converinteractionscode = $("#convertinteractionsscode").val();
-
-//System
-var converinteractionscode = converinteractionscode.replace(replaceponycode1, '\\"').replace(replaceponycode2, '\\n\n');
 
 //Result
-$("#convertinteractionsscode").val(converinteractionscode);
+$("#convertponiescode").val(JSON.stringify(converponiescode_json));
+$("#convertponylist").prop("disabled", false).val(ponyname_generator);
+$("#convertinteractionsscode").prop("disabled", false).val(converinteractionscode);
+
 
 })
 
@@ -191,7 +192,55 @@ var customcssbasepkerp = $("#customcssstskcode").val();
 
 //System
 var customcssbasepkerp = customcssbasepkerp.replace(/url\(/g, "urlfile(").replace(/\.gif/g, '[gif]').replace(/\.gif"/g, '[gif]').replace(/\.png/g, '[png]').replace(/\.png"/g, '[png]').replace(/\.jpg/g, '[jpg]').replace(/\.jpg"/g, '[jpg]').replace(/\.jpeg/g, '[jpeg]').replace(/\.jpeg"/g, '[jpeg]')
-var customcssbasepkerp = customcssbasepkerp.replace(/\.warnhttpsek/g, "[warnhttpsek]").replace(/\.pagseguroimagesplus/g, "[pagseguroimagesplus]").replace(/\.payimagesplus/g, "[payimagesplus]").replace(/\.disabledremover/g, "[disabledremover]").replace(/\.updatebxl/g, "[updatebxl]").replace(/\.openbxl/g, "[openbxl]").replace(/\.removebxl/g, "[removebxl]").replace(/\.warningcolor/g, "[warningcolor]").replace(/\.littlefailsave/g, "[littlefailsave]").replace(/\.nothingitemcode2/g, "[nothingitemcode2]").replace(/\.nothingitemcode/g, "[nothingitemcode]").replace(/\.nothingurlpage/g, "[nothingurlpage]").replace(/\.failloadck/g, "[failloadck]").replace(/\.failloadck2/g, "[failloadck2]").replace(/\.selected/g, "[selected]").replace(/\.urlonoffcustom/g, "[urlonoffcustom]").replace(/\.optionspagecustom/g, "[optionspagecustom]").replace(/\.filecentercustom/g, "[filecentercustom]").replace(/\.hideurllist/g, "[hideurllist]").replace(/\.tborder/g, "[tborder]").replace(/\.menuhelp/g, "[menuhelp]").replace(/\.getbaseurltrue2/g, "[getbaseurltrue2]").replace(/\.getbaseurltrue/g, "[getbaseurltrue]").replace(/\.logobr/g, "[logobr]").replace(/\.urltop/g, "[urltop]").replace(/\.thead/g, "[thead]").replace(/\.urltop/g, "[urltop]").replace(/\.panelponylist1/g, "[panelponylist1]").replace(/\.panelponylist2/g, "[panelponylist2]").replace(/\.warnclsss1/g, "[warnclsss1]").replace(/\.warnclsss2/g, "[warnclsss2]").replace(/\.warnclsss3/g, "[warnclsss3]").replace(/\.warnclsss4/g, "[warnclsss4]").replace(/\.warnclsss5/g, "[warnclsss5]").replace(/\.warnclsss6/g, "[warnclsss6]")
+var customcssbasepkerp = customcssbasepkerp
+.replace(/\.modal-dialog/g, "[modal-dialog]")
+.replace(/\.modal-content/g, "[modal-content]")
+.replace(/\.modal-header/g, "[modal-header]")
+.replace(/\.modal-body/g, "[modal-body]")
+.replace(/\.modal-footer/g, "[modal-footer]")
+.replace(/\.searchbase/g, "[searchbase]")
+.replace(/\.languagebase/g, "[languagebase]")
+.replace(/\.warnbasepx/g, "[warnbasepx]")
+.replace(/\.titleinsertbase/g, "[titleinsertbase]")
+.replace(/\.clickponyoptions/g, "[clickponyoptions]")
+.replace(/\.table/g, "[table]")
+.replace(/\.tableponiesoptions/g, "[tableponiesoptions]")
+.replace(/\.container/g, "[container]")
+.replace(/\.warnhttpsek/g, "[warnhttpsek]")
+.replace(/\.pagseguroimagesplus/g, "[pagseguroimagesplus]")
+.replace(/\.payimagesplus/g, "[payimagesplus]")
+.replace(/\.disabledremover/g, "[disabledremover]")
+.replace(/\.updatebxl/g, "[updatebxl]")
+.replace(/\.openbxl/g, "[openbxl]")
+.replace(/\.removebxl/g, "[removebxl]")
+.replace(/\.warningcolor/g, "[warningcolor]")
+.replace(/\.littlefailsave/g, "[littlefailsave]")
+.replace(/\.nothingitemcode2/g, "[nothingitemcode2]")
+.replace(/\.nothingitemcode/g, "[nothingitemcode]")
+.replace(/\.nothingurlpage/g, "[nothingurlpage]")
+.replace(/\.failloadck/g, "[failloadck]")
+.replace(/\.failloadck2/g, "[failloadck2]")
+.replace(/\.selected/g, "[selected]")
+.replace(/\.urlonoffcustom/g, "[urlonoffcustom]")
+.replace(/\.optionspagecustom/g, "[optionspagecustom]")
+.replace(/\.filecentercustom/g, "[filecentercustom]")
+.replace(/\.hideurllist/g, "[hideurllist]")
+.replace(/\.tborder/g, "[tborder]")
+.replace(/\.menuhelp/g, "[menuhelp]")
+.replace(/\.getbaseurltrue2/g, "[getbaseurltrue2]")
+.replace(/\.getbaseurltrue/g, "[getbaseurltrue]")
+.replace(/\.logobr/g, "[logobr]")
+.replace(/\.urltop/g, "[urltop]")
+.replace(/\.thead/g, "[thead]")
+.replace(/\.urltop/g, "[urltop]")
+.replace(/\.panelponylist1/g, "[panelponylist1]")
+.replace(/\.panelponylist2/g, "[panelponylist2]")
+.replace(/\.warnclsss1/g, "[warnclsss1]")
+.replace(/\.warnclsss2/g, "[warnclsss2]")
+.replace(/\.warnclsss3/g, "[warnclsss3]")
+.replace(/\.warnclsss4/g, "[warnclsss4]")
+.replace(/\.warnclsss5/g, "[warnclsss5]")
+.replace(/\.warnclsss6/g, "[warnclsss6]");
 var customcssbasepkerp = customcssbasepkerp
 
 .replace(/\.ponyimg/g, "[ponyimg]")
@@ -227,12 +276,6 @@ $("#customcssstskcode").val(customcssbasepkerp);
 
 })
 
-$("#baseconfigcancel").click(function(){
-$("#hidebaseurl").removeClass("antihidecodes");
-if(openbaseclicks == true){
-openbaseclicks = false
-}
-})
 
 
 
@@ -257,15 +300,10 @@ systemupdate({
 }
 
 $("#openbackup").click(function(){
-if(openhelpclicks == false){
-$("body").css({"overflow": "hidden"});
-$("#container").fadeOut();
-$("#backuppage").removeClass("menuclosed");
-openhelpclicks = true
-}
-})
-
-$("#closebackup").click(function(){location.reload();})
+$("#mybackupmod").modal({keyboard:false});
+$("#backupanticlick").removeClass("hide").off("click").click(function(){location.reload();});
+$(".container").fadeOut();
+});
 
 $("#backupexport").click(function(){restore_options(true, function(settings){if(settings.exdlenabled == true){
 var mycommandbackupk = '32XSPK32browserponies1tmycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies1tmycommand+'32XSPK3243kpekx54 32XSPK32browserponies2tmycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies2tmycommand+'32XSPK3243kpekx54 32XSPK32browserponies3tmycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies3tmycommand+'32XSPK3243kpekx54 32XSPK32browserponies4mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies4mycommand+'32XSPK3243kpekx54 32XSPK32browserponies5mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies5mycommand+'32XSPK3243kpekx54 32XSPK32browserponies6mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies6mycommand+'32XSPK3243kpekx54 32XSPK32browserponies7mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies7mycommand+'32XSPK3243kpekx54 32XSPK32browserponies8mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies8mycommand+'32XSPK3243kpekx54 32XSPK32browserponies9mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies9mycommand+'32XSPK3243kpekx54 32XSPK32browserponies10mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies10mycommand+'32XSPK3243kpekx54 32XSPK32browserponies11mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies11mycommand+'32XSPK3243kpekx54 32XSPK32browserponies12mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies12mycommand+'32XSPK3243kpekx54 32XSPK32browserponies13mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies13mycommand+'32XSPK3243kpekx54 32XSPK32browserponies14mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies14mycommand+'32XSPK3243kpekx54 32XSPK32browserponies15mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies15mycommand+'32XSPK3243kpekx54 32XSPK32browserponies16mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies16mycommand+'32XSPK3243kpekx54 32XSPK32browserponies17mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies17mycommand+'32XSPK3243kpekx54 32XSPK32browserponies18mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies18mycommand+'32XSPK3243kpekx54 32XSPK32browserponies19mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies19mycommand+'32XSPK3243kpekx54 32XSPK32browserponies20mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies20mycommand+'32XSPK3243kpekx54 32XSPK32browserponies21mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies21mycommand+'32XSPK3243kpekx54 32XSPK32browserponies22mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies22mycommand+'32XSPK3243kpekx54 32XSPK32browserponies23mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies23mycommand+'32XSPK3243kpekx54 32XSPK32browserponies24mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies24mycommand+'32XSPK3243kpekx54 32XSPK32browserponies25mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies25mycommand+'32XSPK3243kpekx54 32XSPK32browserponies26mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies26mycommand+'32XSPK3243kpekx54 32XSPK32browserponies27mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies27mycommand+'32XSPK3243kpekx54 32XSPK32browserponies28mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies28mycommand+'32XSPK3243kpekx54 32XSPK32browserponies29mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies29mycommand+'32XSPK3243kpekx54 32XSPK32browserponies30mycommand32XSPK32654xsd342 32XSPK32'+settings.browserponies30mycommand+'32XSPK32'
@@ -277,7 +315,10 @@ var truefalsesystempkr = '"browserponies1turleditorsktrue": "'+settings.browserp
 
 var backupkerpexport = '{'+restsystempkerx+moresettingsbackup+truefalsesystempkr+mycommandbackupk+'}'
 var backupkerpexport = backupkerpexport.replace(/undefined/g, "null").replace(/"undefined"/g, '"null"')
-$("#backupspacepk").val(backupkerpexport);
+
+
+var blob = new Blob([backupkerpexport], {type: "text/plain;charset=utf-8"});
+saveAs(blob, "pony_chrome_mania_backup.txt");
 }})})
 
 $("#backupimport").click(function(){

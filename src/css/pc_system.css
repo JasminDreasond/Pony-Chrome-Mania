@@ -1,0 +1,5 @@
+#pc_m_bar, .pc_m_bar, .pc_m_barcontainer, #pc_m_barcontainer, .pc_m_container, #pc_m_container{padding: 17px !important;}
+#pc_m_bar, .pc_m_bar{margin-top: -17px !important; margin-left: -17px !important;}
+.pc_m_barcontainer, #pc_m_barcontainer{margin-top: -17px !important;}
+#pc_m_container, .pc_m_container{padding: 25px 10px!important;}
+.pc_m_label, #pc_m_label{margin-top: -1px !important;}

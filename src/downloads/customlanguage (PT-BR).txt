@@ -39,6 +39,8 @@
 "changelgcustomcss": "CSS Personalizável:",
 "changelgcustomlanguage": "Idioma Personalizável:",
 "changelgrefreshwarn": "Alerta de Refresh:",
+"changelgponypage": "Lista do Pônei:",
+"configmodal": "Configurações",
 
 
 
@@ -150,6 +152,7 @@
 
 "confirmbaseconfigs": "Confirmar",
 "helpbaseconfigs": "Ajuda",
+"customcssstskconfirm": "Converter CSS",
 "cancelbaseconfigs": "Cancelar",
 "closebaseconfigs": "Fechar",
 "ponyname": "Nome",

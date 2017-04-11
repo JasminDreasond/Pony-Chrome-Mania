@@ -3,12 +3,12 @@
 //Pop-Up
 
 function newtabherenow(){
-var chromeponypopup = window.open(chrome.extension.getURL('options.html'), "chromeponypopup", "width=1250,height=700");
+var chromeponypopup = window.open(chrome.extension.getURL('index.html'), "chromeponypopup", "width=1250,height=700");
 chromeponypopup.focus(); 
 };
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-var chromeponypopup = window.open(chrome.extension.getURL('options.html'), "chromeponypopup");
+var chromeponypopup = window.open(chrome.extension.getURL('index.html'), "chromeponypopup");
 chromeponypopup.focus(); 
 });
 
