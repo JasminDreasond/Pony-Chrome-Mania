@@ -69,6 +69,13 @@ chrome.browserAction.setBadgeBackgroundColor({
 chrome.browserAction.setBadgeText({text: "m"});
 }
 
+else if(statesponyhere == "cmd"){
+chrome.browserAction.setBadgeBackgroundColor({
+    color: [0, 0, 0, 255]
+});
+chrome.browserAction.setBadgeText({text: "cmd"});
+}
+
 else if(statesponyhere == "close"){
 chrome.browserAction.setBadgeBackgroundColor({
     color: [0, 0, 0, 255]
@@ -213,6 +220,17 @@ chrome.extension.onMessage.addListener(function(message,sender,sendResponse){
   sendResponse({type:"configponypagepk"})
   
 statesponyhere = "config"
+  
+  };
+});
+
+//CMD
+
+chrome.extension.onMessage.addListener(function(message,sender,sendResponse){
+  if(message.text == "cmdponypage"){
+  sendResponse({type:"cmdponypagepk"})
+  
+statesponyhere = "cmd"
   
   };
 });
