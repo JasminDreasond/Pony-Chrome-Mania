@@ -337,13 +337,30 @@ startponyconvert({
 
 
 // Intro
-$('.items').append($("<command>").text("Please, wait a response of GitHub.com"));
+$('.items').append($("<command>").append(
+$("<span>").text("Please, wait a response of "),
+$("<strong>", {class: 'github_info'}).text('GitHub.com')
+));
 scrolldown();
 
+
+
+// Github map folders
+
+function folderlist_git(data_map){$('.items').append($("<command>").append($('<div>', {class: 'help_title'}).text('Folder list of repository:')));
+for (i = 0; i < data_map.length; i++) {if(data_map[i].type == "dir"){
+$('.items').append($("<command>").append($('<span>').text(data_map[i].name+" - "), $('<span>', {class: "help_info"}).text('./'+data_map[i].branchName+'/'+data_map[i].path+'/')));
+scrolldown();
+}}}
+
+
+
+
+// GitHub Work
 function startgithub(){
 cmd_disable = true;
 var folder_git_select = '';
-	
+
 // Config Inicial
 var git_user = new Gh3.User(data.user) ,
 git_blog = new Gh3.Repository(data.repository, git_user);
@@ -351,36 +368,45 @@ git_blog = new Gh3.Repository(data.repository, git_user);
 // Start
 git_blog.fetch(function (err, res) { if(err) { errorresult(1); } else{
 git_blog.fetchBranches(function (err, res) { if(err) { errorresult(2); } else{
-	
-if(data.type == 'default'){master_name_git = 'master'}
+
+$('.items').append($("<command>").append(
+$("<span>").text("Connected successfully in the repository "),
+$("<strong>", {class: 'repository_info'}).text(data.repository)
+));
+
+if(data.type == 'default'){master_name_git = 'master';}
 else{master_name_git = prompt('Branch name:', master_name_git);}
 var git_master = git_blog.getBranchByName(master_name_git);
 
 
-
-
-if((master_name_git == null) || (master_name_git == undefined) || (master_name_git == '') || (git_master == undefined)){errorresult('branch name null or incorrect', true); startgithub();} else{
+if((master_name_git == null) || (master_name_git == undefined)){cmd_disable = false;}
+else if((master_name_git == '') || (git_master == undefined)){errorresult('branch name null or incorrect', true); setTimeout(function(){startgithub();},100);} else{
 
 // Enter Master
 git_master.fetchContents(function (err, res) { if(err) { errorresult(3); } else{
 
-
+$('.items').append($("<command>").append(
+$("<span>").text("Branch "),
+$("<strong>", {class: 'repository_info'}).text(master_name_git),
+$("<span>").text(" opened successfully  ")
+));
 
 
 // More Folder Command
 var git_dir2;
 function enter_subfolder_git(data3, repeatdetect){if(repeatdetect == true){git_dir2 = git_dir2.getDirByName(data3);} else{git_dir2 = git_dir.getDirByName(data3);}
 
-if(git_dir2 == undefined){errorresult('folder name null or incorrect', true); startgithub();} 
+if(git_dir2 == undefined){errorresult('folder name null or incorrect', true); setTimeout(function(){startgithub();},100);} 
 else {git_dir2.fetchContents(function (err, res) {if(err) { errorresult(5); } else{
 
 // Start Download
 if(data.type == 'default'){startdownload_git(git_dir2.getContents(), 'Content/Ponies/');}
 // Start Download
-else {var cmd_command_git = prompt('Directory\nFolder: " ./'+master_name_git+'/'+folder_git_select+' "\n\nReset Command: reset.folder', 'start.download');
+else {var cmd_command_git = prompt('Directory\nFolder: " ./'+master_name_git+'/'+folder_git_select+' "\n\nReset Command: reset.folder\nFolder List Command: folder.list', 'start.download');
 if(cmd_command_git == 'start.download'){startdownload_git(git_dir2.getContents(), folder_git_select);}
 else if((cmd_command_git == null) || (cmd_command_git == undefined) || (cmd_command_git == '')){cmd_disable = false;}
 else if(cmd_command_git == 'reset.folder'){startgithub();}
+else if(cmd_command_git == 'folder.list'){folderlist_git(git_dir2.getContents()); setTimeout(function(){enter_subfolder_git(data3, repeatdetect);},100);}
 else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_subfolder_git(cmd_command_git, true);}
 }
 
@@ -392,16 +418,17 @@ else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_subfolder_
 var git_dir;
 function enter_folder_git(data2){git_dir = git_master.getDirByName(data2); 
 
-if(git_dir == undefined){errorresult('folder name null or incorrect', true); startgithub();} 
+if(git_dir == undefined){errorresult('folder name null or incorrect', true); setTimeout(function(){startgithub();},100);} 
 else {git_dir.fetchContents(function (err, res) { if(err) { errorresult(4); } else{
 
 // Default Option
 if(data.type == 'default'){enter_subfolder_git('Ponies');}
 // Start Download
-else {var cmd_command_git = prompt('Directory\nFolder: " ./'+master_name_git+'/'+folder_git_select+' "\n\nReset Command: reset.folder', 'start.download');
+else {var cmd_command_git = prompt('Directory\nFolder: " ./'+master_name_git+'/'+folder_git_select+' "\n\nReset Command: reset.folder\nFolder List Command: folder.list', 'start.download');
 if(cmd_command_git == 'start.download'){startdownload_git(git_dir.getContents(), folder_git_select);}
 else if((cmd_command_git == null) || (cmd_command_git == undefined) || (cmd_command_git == '')){cmd_disable = false;}
 else if(cmd_command_git == 'reset.folder'){startgithub();}
+else if(cmd_command_git == 'folder.list'){folderlist_git(git_dir.getContents()); setTimeout(function(){enter_folder_git(data2);}, 100);}
 else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_subfolder_git(cmd_command_git);}
 }
 
@@ -409,15 +436,18 @@ else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_subfolder_
 
 
 // Default Option
+function start_folder_git(){
 if(data.type == 'default'){enter_folder_git('Content');}
 // Start Download
-else {var cmd_command_git = prompt('First Directory\n\nReset Command: reset.folder', 'start.download');
+else {var cmd_command_git = prompt('First Directory\n\nReset Command: reset.folder\nFolder List Command: folder.list', 'start.download');
 if(cmd_command_git == 'start.download'){startdownload_git(git_master.getContents(), folder_git_select);}
 else if((cmd_command_git == null) || (cmd_command_git == undefined) || (cmd_command_git == '')){cmd_disable = false;}
 else if(cmd_command_git == 'reset.folder'){startgithub();}
+else if(cmd_command_git == 'folder.list'){folderlist_git(git_master.getContents()); setTimeout(function(){start_folder_git();},100);}
 else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_folder_git(cmd_command_git);}
 }
-	
+}
+setTimeout(function(){start_folder_git();},100);
 
 	
 }});}
@@ -431,7 +461,12 @@ else{folder_git_select = folder_git_select+cmd_command_git+'/'; enter_folder_git
 }});}});}
 
 // Check Connection
-$.ajax({cache: false, url: "https://github.com"}).done(function(){startgithub();}).error(function(){errorresult('connection');});
+$.ajax({cache: false, url: "https://github.com"}).done(function(){$('.items').append($("<command>").append(
+
+$("<span>").text("Connected successfully in the user "),
+$("<strong>", {class: 'user_info'}).text(data.user)
+
+)); setTimeout(function(){startgithub();}, 100);}).error(function(){errorresult('connection');});
 
 }
 

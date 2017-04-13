@@ -36,5 +36,9 @@ width: 100%;
 .help_info{color: #e67300;}
 
 
+.user_info{color: #0066ff;}
+.repository_info{color: #00ffff;}
+.github_info{color: #FFF;}
+
 
 ::selection{background-color: #FFF !important; color: #3F3F3F !important;}
