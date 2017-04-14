@@ -332,6 +332,11 @@ ponydataspawn = ponydataspawn
 
 ponydataspawn = ponydataspawn
 
+.replace(/source-github\(href\)=\"/g, 'href="https://raw.githubusercontent.com')
+.replace(/source-github\(src\)=\"/g, 'src="https://raw.githubusercontent.com')
+.replace(/source-github\(href\)=\'/g, "href='https://raw.githubusercontent.com")
+.replace(/source-github\(url\)/g, "https://raw.githubusercontent.com")
+
 .replace(/source-base-RoosterDragon\(href\)=\"/g, 'href="https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/')
 .replace(/source-base-RoosterDragon\(src\)=\"/g, 'src="https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/')
 .replace(/source-base-RoosterDragon\(href\)=\'/g, "href='https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")

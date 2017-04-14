@@ -102,10 +102,13 @@ $("#myconvertcode").modal();
 $("#baseconfigconfirmponycode").click(function(){
 
 // Montar Get
+var pony_name_default = $("#convertponiescode").val().split('\n')[0];
 var pony_name = $("#convertponiescode").val().split('\n')[0];
+var pony_name = pony_name.replace(/\'/g, '');
 var pony_category = $("#convertponiescode").val().split('\n')[1];
 var pony_config = $("#convertponiescode").val().split('Interaction,')[0];
-var pony_interactions = $("#convertponiescode").val().replace(pony_config, '');
+var pony_interactions = $("#convertponiescode").val().replace(pony_config, '').replace(/\'/g, '');;
+var pony_config = pony_config.replace(pony_config.split('\n')[0], pony_name);
 
 var convertname_st = pony_name.replace('Name,', '');
 if((encodeURI(convertname_st).indexOf('%20') > -1) && (convertname_st.indexOf('"') == -1)){var convertname_st = '"'+convertname_st+'"'; var pony_config = pony_config.replace(pony_name, 'Name,'+convertname_st);}
@@ -117,8 +120,6 @@ var replaceponycode2 = new RegExp('\n', 'g');
 // Base
 var converponiescode = pony_config;
 var converponiescodebaseurl = $("#convertponiescodebaseurl").val();
-if((converponiescodebaseurl.indexOf("deviantart-") > -1) || (converponiescodebaseurl.indexOf("file-base") > -1)){converponiescodebaseurl = ''; var whitelistdetect_pt = true;}
-else {var whitelistdetect_pt = false;}
 
 if(converponiescode == ""){return}
 
@@ -139,8 +140,7 @@ var converponiescode_json = JSON.parse(converponiescode);
 
 // Entregar Pony Name Config
 
-if(whitelistdetect_pt == true){var getimg = '';}
-else if($("#convertponiescode").val().indexOf('.gif') > -1){
+if($("#convertponiescode").val().indexOf('.gif') > -1){
 var getimg = $("#convertponiescode").val().split('.gif')[0];
 var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+getimg.lastIndexOf('"')).replace(/\"/g, "")+'.gif';
 }
@@ -152,10 +152,10 @@ var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+g
 var ponyname_generator = 
 '<ponytags>'+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ')+'</ponytags>\n'+
 '<ponyname>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</ponyname>\n'+
-'<baseurl></baseurl>\n'+
-'<ponyimg>'+$("#convertponiescodebaseurl").val()+encodeURIComponent(pony_name.replace('Name,', ''))+'/'+getimg+'</ponyimg>\n'+
-'<datapony>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '')+'</datapony>\n'+
-'<ponyid>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n'
+'<baseurl>'+converponiescodebaseurl+'</baseurl>\n'+
+'<ponyimg>'+$("#convertponiescodebaseurl").val()+encodeURIComponent(pony_name_default.replace('Name,', ''))+'/'+getimg+'</ponyimg>\n'+
+'<datapony>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</datapony>\n'+
+'<ponyid>'+pony_name.replace('Name,', '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n'
 ;
 
 

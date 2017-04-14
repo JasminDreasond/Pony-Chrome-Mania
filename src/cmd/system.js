@@ -60,10 +60,13 @@ var count_git_items_c = 0;
 function convertponyst(github, thishere, data){
 
 // Montar Get
+var pony_name_default = github.split('\n')[0];
 var pony_name = github.split('\n')[0];
+var pony_name = pony_name.replace(/\'/g, '');
 var pony_category = github.split('\n')[1];
 var pony_config = github.split('Interaction,')[0];
-var pony_interactions = github.replace(pony_config, '');
+var pony_interactions = github.replace(pony_config, '').replace(/\'/g, '');
+var pony_config = pony_config.replace(pony_config.split('\n')[0], pony_name);
 
 var convertname_st = pony_name.replace('Name,', '');
 if((encodeURI(convertname_st).indexOf('%20') > -1) && (convertname_st.indexOf('"') == -1)){var convertname_st = '"'+convertname_st+'"'; var pony_config = pony_config.replace(pony_name, 'Name,'+convertname_st);}
@@ -75,6 +78,13 @@ var replaceponycode2 = new RegExp('\n', 'g');
 // Base
 var converponiescode = pony_config;
 var converponiescodebaseurl = thishere.url.split('/pony.ini')[0]+'/';
+
+if(data.type == 'default'){
+var converponiescodebaseurl = converponiescodebaseurl.replace(thishere.url.split('/pony.ini')[0].substring(0, thishere.url.split('/pony.ini')[0].lastIndexOf("/")), 'source-base-RoosterDragon');
+}
+else if(converponiescodebaseurl.startsWith('https://raw.githubusercontent.com/')){
+var converponiescodebaseurl = converponiescodebaseurl.replace('https://raw.githubusercontent.com', 'source-github');
+}
 
 if(converponiescode == ""){return}
 
@@ -105,13 +115,23 @@ var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+g
 
 ponylistcategory_git = ponylistcategory_git+', '+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ');
 
+if(data.type == 'default'){
+var converponiescodebaseurl = converponiescodebaseurl.replace('source-base-RoosterDragon', 'source-base-RoosterDragon(url)');
+var baseurlconverponiescodebaseurl = '';
+}
+else if(converponiescodebaseurl.startsWith('source-github')){
+var converponiescodebaseurl = converponiescodebaseurl.replace('source-github', 'source-github(url)');
+var baseurlconverponiescodebaseurl = '';
+}
+else{var baseurlconverponiescodebaseurl = converponiescodebaseurl;}
+
 var ponyname_generator = 
 '<ponytags>'+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ')+'</ponytags>\n'+
 '<ponyname>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</ponyname>\n'+
-'<baseurl></baseurl>\n'+
-'<ponyimg>source-base-RoosterDragon(url)'+encodeURIComponent(pony_name.replace('Name,', ''))+'/'+getimg+'</ponyimg>\n'+
-'<datapony>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '')+'</datapony>\n'+
-'<ponyid>'+pony_name.replace('Name,', '').replace(/\'/g, '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n\n\n\n'
+'<baseurl>'+baseurlconverponiescodebaseurl+'</baseurl>\n'+
+'<ponyimg>'+converponiescodebaseurl+getimg+'</ponyimg>\n'+
+'<datapony>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</datapony>\n'+
+'<ponyid>'+pony_name.replace('Name,', '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n\n\n\n'
 ;
 
 ponylist_git.push({'ponylist': ponyname_generator});
@@ -184,7 +204,7 @@ if(data.type == 'default'){var copyrighttext_git = 'The artwork used is from the
 
 // Download Pony Code
 var blob = new Blob([ponycode_git_t], {type: "text/plain;charset=utf-8"});
-saveAs(blob, "ponycode_"+data.user+".txt");
+saveAs(blob, data.user+"_"+data.repository+"_ponycode.txt");
 
 // Download Pony List
 var blob = new Blob([
@@ -195,11 +215,11 @@ copyrighttext_git+
 '<randomsystem>\n\n\n\n'+
 listponylist
 ], {type: "text/plain;charset=utf-8"});
-saveAs(blob, "ponylist_"+data.user+".txt");
+saveAs(blob, data.user+"_"+data.repository+"_ponylist.txt");
 
 // Download Interactions
 var blob = new Blob([listinteractions], {type: "text/plain;charset=utf-8"});
-saveAs(blob, "interactions_"+data.user+".txt");
+saveAs(blob, data.user+"_"+data.repository+"_interactions.txt");
 
 // Finish
 $('.items').append($("<command>").append($('<span>').text('100% - '), $('<span>', {class: "download_complete"}).text("All downloads completed successfully!")));
@@ -328,7 +348,7 @@ if(autoreverseen == true){ponycode_git.push({"autoreverse": true})}
 
 // Start Convert
 startponyconvert({
-'folder': data.user+'/'+data.repository+'/master/'+folderfinal, 'user': data.user, 'type': data.type
+'folder': data.user+'/'+data.repository+'/master/'+folderfinal, 'user': data.user, 'type': data.type, 'repository': data.repository
 },totalfoder_git);
 }
 
