@@ -104,6 +104,7 @@ $("#baseconfigconfirmponycode").click(function(){
 // Montar Get
 var pony_name_default = $("#convertponiescode").val().split('\n')[0];
 var pony_name = $("#convertponiescode").val().split('\n')[0];
+var pony_name_original = pony_name;
 var pony_name = pony_name.replace(/\'/g, '');
 var pony_category = $("#convertponiescode").val().split('\n')[1];
 var pony_config = $("#convertponiescode").val().split('Interaction,')[0];
@@ -151,9 +152,9 @@ var getimg = getimg.substring(getimg.lastIndexOf('"'), getimg.lastIndexOf('"')+g
 
 var ponyname_generator = 
 '<ponytags>'+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ')+'</ponytags>\n'+
-'<ponyname>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</ponyname>\n'+
+'<ponyname>'+pony_name_original.replace('Name,', '')+'</ponyname>\n'+
 '<baseurl>'+converponiescodebaseurl+'</baseurl>\n'+
-'<ponyimg>'+$("#convertponiescodebaseurl").val()+encodeURIComponent(pony_name_default.replace('Name,', ''))+'/'+getimg+'</ponyimg>\n'+
+'<ponyimage>'+$("#convertponiescodebaseurl").val()+encodeURIComponent(pony_name_default.replace('Name,', ''))+'/'+getimg+'</ponyimage>\n'+
 '<datapony>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</datapony>\n'+
 '<ponyid>'+pony_name.replace('Name,', '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n'
 ;

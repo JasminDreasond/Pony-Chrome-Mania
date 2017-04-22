@@ -25,7 +25,14 @@ savehere.save = savehere.save
 .replace(/23browsourcepkxs23/g, "https://jackieapkon.github.io/Browser-Ponies/")
 
 if(savehere.saveType == "basepony"){
-savehere.save = savehere.save.replace(/deviantart-img\//g, 'https://img01.deviantart.net/').replace(/deviantart-pre\//g, 'https://pre01.deviantart.net/').replace(/deviantart-orig\//g, 'https://orig01.deviantart.net/').replace(/source-base\//g, "https://jackieapkon.github.io/Browser-Ponies/")
+savehere.save = savehere.save
+.replace(/deviantart-img\//g, 'https://img01.deviantart.net/')
+.replace(/deviantart-pre\//g, 'https://pre01.deviantart.net/')
+.replace(/deviantart-orig\//g, 'https://orig01.deviantart.net/')
+.replace(/source-github\//g, "https://raw.githubusercontent.com/")
+.replace(/source-base-RoosterDragon\//g, "https://raw.githubusercontent.com/RoosterDragon/Desktop-Ponies/master/Content/Ponies/")
+.replace(/source-base-JackieApkon\//g, "https://raw.githubusercontent.com/JackieApkon/Pony-Chrome-Mania/master/my_ponies/")
+.replace(/source-base\//g, "https://jackieapkon.github.io/Browser-Ponies/")
 
 var spawndetectsystemxs32 = savehere.save.split('\n')[0];
 if(spawndetectsystemxs32.indexOf('{"autoreverse": true},') >= 0){

@@ -62,6 +62,7 @@ function convertponyst(github, thishere, data){
 // Montar Get
 var pony_name_default = github.split('\n')[0];
 var pony_name = github.split('\n')[0];
+var pony_name_original = pony_name;
 var pony_name = pony_name.replace(/\'/g, '');
 var pony_category = github.split('\n')[1];
 var pony_config = github.split('Interaction,')[0];
@@ -127,9 +128,9 @@ else{var baseurlconverponiescodebaseurl = converponiescodebaseurl;}
 
 var ponyname_generator = 
 '<ponytags>'+pony_category.replace('Categories,', '').replace(/\"/g, '').replace(/\,/g, ', ')+'</ponytags>\n'+
-'<ponyname>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</ponyname>\n'+
+'<ponyname>'+pony_name_original.replace('Name,', '')+'</ponyname>\n'+
 '<baseurl>'+baseurlconverponiescodebaseurl+'</baseurl>\n'+
-'<ponyimg>'+converponiescodebaseurl+getimg+'</ponyimg>\n'+
+'<ponyimage>'+converponiescodebaseurl+getimg+'</ponyimage>\n'+
 '<datapony>'+pony_name.replace('Name,', '').replace(/\"/g, '')+'</datapony>\n'+
 '<ponyid>'+pony_name.replace('Name,', '').replace(/\"/g, '').replace(/ /g, '_').toLowerCase()+'</ponyid>\n\n\n\n'
 ;
@@ -211,7 +212,7 @@ var blob = new Blob([
 copyrighttext_git+
 '<randomtags>'+ponylistcategory_git_complete+'</randomtags>\n'+
 '<randomname>Random Pony</randomname>\n'+
-'<randomimg>source-base(url)Ponies/random%20pony/random-pony.gif</randomimg>\n'+
+'<randomimg>source-base(url)ponies/random%20pony/random-pony.gif</randomimg>\n'+
 '<randomsystem>\n\n\n\n'+
 listponylist
 ], {type: "text/plain;charset=utf-8"});
