@@ -174,7 +174,7 @@ else{saveallpke();}
 function systempker(pkesele, next){
 if(pkesele.saveOn == true){
 if((pkesele.url.endsWith(pkesele.format)) || (pkesele.url.startsWith("https://googledrive.com/host/")) || (pkesele.url.startsWith("http://sonicrainboom.com.br/attachment.php?aid=")) || (pkesele.url.startsWith("https://sonicrainboom.com.br/attachment.php?aid="))){
-$.ajax({url: pkesele.url, cache: false, type: 'get', error: function(XMLHttpRequest, textStatus, errorThrown){
+$.ajax({url: pkesele.url, cache: false, type: 'get', dataType: "text", error: function(XMLHttpRequest, textStatus, errorThrown){
 var myerrorof = pkesele.errorMSG
 if(XMLHttpRequest.readyState == 4) {var myerrorof =  myerrorof+" - readyState4";}
 else if(XMLHttpRequest.readyState == 0) {var myerrorof =  myerrorof+" - readyState0";}

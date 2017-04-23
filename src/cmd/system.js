@@ -258,7 +258,7 @@ for (i = 0; i < totalfoder_git.length; i++) {if(totalfoder_git[i].type == "dir")
 
 // Send Download
 $.ajax({
-cache: false, 
+cache: false, dataType: "text",
 url: "https://raw.githubusercontent.com/"+data.folder+encodeURIComponent(totalfoder_git[i].name)+"/pony.ini"
 })
 
@@ -482,7 +482,7 @@ setTimeout(function(){start_folder_git();},100);
 }});}});}
 
 // Check Connection
-$.ajax({cache: false, url: "https://github.com"}).done(function(){$('.items').append($("<command>").append(
+$.ajax({cache: false, url: "https://github.com", dataType: "text"}).done(function(){$('.items').append($("<command>").append(
 
 $("<span>").text("Connected successfully in the user "),
 $("<strong>", {class: 'user_info'}).text(data.user)
