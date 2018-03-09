@@ -1,93 +1,100 @@
-#loadinglg{
-display: inline !important;
-color: auto !important;
+#loadinglg {
+    display: inline !important;
+    color: auto !important;
 }
 
-.whitelisthidexs{
-display: none !important;
+.whitelisthidexs {
+    display: none !important;
 }
 
-.whitelistsystem{
-font-weight: bold !important;
+.whitelistsystem {
+    font-weight: bold !important;
 }
 
-.loadprogresstest{
-display: none !important;
+.loadprogresstest {
+    display: none !important;
 }
 
-.loadprogressteston{
-display: block !important;
+.loadprogressteston {
+    display: block !important;
 }
 
-.boxurlclicknshide{
-display: none !important;
+.boxurlclicknshide {
+    display: none !important;
 }
 
-.removewarningke{
-display: none !important;
+.removewarningke {
+    display: none !important;
 }
 
-.savedisabled{
-pointer-events: none !important;	
+.savedisabled {
+    pointer-events: none !important;
 }
 
-.disabledwarning{
-pointer-events: none !important;
+.disabledwarning {
+    pointer-events: none !important;
 }
 
-.disabledremover{
-pointer-events: none !important;
+.disabledremover {
+    pointer-events: none !important;
 }
 
-.antihidecodes{
-display: inline !Important;
+.antihidecodes {
+    display: inline !Important;
 }
 
-.loadingpanelre{
-pointer-events: none !important;
+.loadingpanelre {
+    pointer-events: none !important;
 }
 
-.hideponies{
-display: none !important;
+.hideponies {
+    display: none !important;
 }
 
-.menuhelpdonate{
-display: block !important;
+.menuhelpdonate {
+    display: block !important;
 }
 
-.menuclosed{
-display: none !important;
+.menuclosed {
+    display: none !important;
 }
 
-#opendonate, #resetlinks, #resetlinks2, #addconfig{
-display: inline !important;
+#opendonate,
+#resetlinks,
+#resetlinks2,
+#addconfig {
+    display: inline !important;
 }
 
-#fixedurl{
-display: none !important;
+#fixedurl {
+    display: none !important;
 }
 
-#copyright, #extracopyright, #extracopyright2{
-display: block !important;
+#copyright,
+#extracopyright,
+#extracopyright2 {
+    display: block !important;
 }
 
-.hideenglishcr{
-display: none !important;
+.hideenglishcr {
+    display: none !important;
 }
 
-
-#baselistgenerator, #baselistname, #baselistname, .basegeneratorviewpk{
-display: block !important;
+#baselistgenerator,
+#baselistname,
+#baselistname,
+.basegeneratorviewpk {
+    display: block !important;
 }
 
-[id*="xbaselike"]{
-display: block !important;
+[id*="xbaselike"] {
+    display: block !important;
 }
 
-[id*="gbaselikeurl"]{
-display: inline !important;
+[id*="gbaselikeurl"] {
+    display: inline !important;
 }
 
-.hidebaselist{
-display: none !important;	
+.hidebaselist {
+    display: none !important;
 }

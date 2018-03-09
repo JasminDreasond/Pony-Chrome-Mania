@@ -1,2 +1,2 @@
-function ksremoveoptions(){}
+function ksremoveoptions() {}
 var defaultmycommand = null
