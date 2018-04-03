@@ -43,9 +43,13 @@ function basicremovebppage() {
     var advanceduserpk = false
 
     function openadvanced() {
-        if (advanceduserpk == false) { advanceduserpk = true;
-            $(".advancedinfo").removeClass("hideinfo"); } else if (advanceduserpk == true) { advanceduserpk = false;
-            $(".advancedinfo").addClass("hideinfo"); }
+        if (advanceduserpk == false) {
+            advanceduserpk = true;
+            $(".advancedinfo").removeClass("hideinfo");
+        } else if (advanceduserpk == true) {
+            advanceduserpk = false;
+            $(".advancedinfo").addClass("hideinfo");
+        }
     }
 
     $("#openadvanceduser").click(openadvanced);
@@ -53,9 +57,13 @@ function basicremovebppage() {
     var licenceuserpk = false
 
     function openlicense() {
-        if (licenceuserpk == false) { licenceuserpk = true;
-            $(".licenceinfo").removeClass("hideinfo"); } else if (licenceuserpk == true) { licenceuserpk = false;
-            $(".licenceinfo").addClass("hideinfo"); }
+        if (licenceuserpk == false) {
+            licenceuserpk = true;
+            $(".licenceinfo").removeClass("hideinfo");
+        } else if (licenceuserpk == true) {
+            licenceuserpk = false;
+            $(".licenceinfo").addClass("hideinfo");
+        }
     }
 
     $("#openlicenceuser").click(openlicense);

@@ -445,8 +445,10 @@ $(document).ready(function() { restore_options(); })
 
 $("#browserponies1t, #browserponies2t, #browserponies3t, #browserponies4, #browserponies5, #browserponies6, #browserponies7, #browserponies8, #browserponies9, #browserponies10, #browserponies11, #browserponies12, #browserponies13, #browserponies14, #browserponies15, #browserponies16, #browserponies17, #browserponies18, #browserponies19, #browserponies20, #browserponies21, #browserponies22, #browserponies23, #browserponies24, #browserponies25, #browserponies26, #browserponies27, #browserponies28, #browserponies29, #browserponies30").change(function() {
     var getidpkex12 = $(this).attr("id");
-    if ($("#" + getidpkex12).val() == "nullts") { $("#" + getidpkex12).val("Nope");
-        save_options(); } else { save_options(); }
+    if ($("#" + getidpkex12).val() == "nullts") {
+        $("#" + getidpkex12).val("Nope");
+        save_options();
+    } else { save_options(); }
 })
 
 function startmyresetopk(finalresulttrue, finalresult) {

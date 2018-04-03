@@ -29,8 +29,10 @@ function enablethemepk() {
 function loadextensionstart() {
 
     function loadlanguagesystempk(mydatalanguage) {
-        if ((mydatalanguage == "") || (mydatalanguage == null)) { languageset();
-            customcssenabled(); } else if ((mydatalanguage.indexOf("\\") >= 0) || (mydatalanguage.indexOf("Function") >= 0) || (mydatalanguage.indexOf("function") >= 0) || (mydatalanguage.indexOf("eval") >= 0)) { customcssenabled(); } else {
+        if ((mydatalanguage == "") || (mydatalanguage == null)) {
+            languageset();
+            customcssenabled();
+        } else if ((mydatalanguage.indexOf("\\") >= 0) || (mydatalanguage.indexOf("Function") >= 0) || (mydatalanguage.indexOf("function") >= 0) || (mydatalanguage.indexOf("eval") >= 0)) { customcssenabled(); } else {
 
             var antispacetradutor = new RegExp('\n', 'g');
             customlanguage2 = customlanguage2.replace(antispacetradutor, "")

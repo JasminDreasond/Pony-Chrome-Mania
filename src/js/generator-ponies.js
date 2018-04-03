@@ -2475,7 +2475,7 @@ function systemallponyxs() {
 
                             EffectInstance.prototype = extend(new Instance(), {
                                 createImage: function(src) {
-                                    var img = tag(Gecko || Opera ? 'img' : 'iframe', {
+                                    var img = tag('img', {
                                         src: src,
                                         draggable: 'false',
                                         style: {
@@ -3586,9 +3586,11 @@ function systemallponyxs() {
 
                 //CONFIG PONY EXTENSION
 
-                (function(cfg) { BrowserPonies.setBaseUrl(cfg.baseurl);
+                (function(cfg) {
+                    BrowserPonies.setBaseUrl(cfg.baseurl);
                     BrowserPonies.loadConfig({ interactions: myponies.interactions, ponies: myponies.basepony });
-                    BrowserPonies.loadConfig(cfg); })
+                    BrowserPonies.loadConfig(cfg);
+                })
                 ({
                     "baseurl": spawnpony.baseUrl,
                     "fadeDuration": spawnpony.fade,
@@ -3772,8 +3774,10 @@ function systemallponyxs() {
     //Command Start
 
     function startponiesnowkk(startcommand, manuke, languageloading) {
-        if (manuke == true) { introponieshere(mycommandsetpk, languageloading);
-            delete mycommandsetpk; } else { introponieshere(startcommand, languageloading); }
+        if (manuke == true) {
+            introponieshere(mycommandsetpk, languageloading);
+            delete mycommandsetpk;
+        } else { introponieshere(startcommand, languageloading); }
     }
 
     function veksystempk(startcommand, myfalsepke, languageloading) {
