@@ -4,7 +4,7 @@
     "description": "__MSG_appDesc__",
     "author": "Jasmin Dreasond",
     "default_locale": "en",
-    "version": "2.3.0.2",
+    "version": "2.3.0.3",
     "manifest_version": 2,
     "background": {
         "page": "background.html"
@@ -24,14 +24,14 @@
     },
 
     "content_scripts": [{
-            "exclude_matches": ["https://jasmindreasond.github.io/Browser-Ponies/*", "http://jasmindreasond.github.io/Browser-Ponies/*"],
+            "exclude_matches": ["https://jasmindreasond.github.io/New-Browser-Ponies/*", "http://jasmindreasond.github.io/New-Browser-Ponies/*"],
             "matches": ["<all_urls>"],
             "js": ["js/jquery/jquery-2.1.1.js", "js/generator-ponies.js"],
             "run_at": "document_start"
         },
 
         {
-            "matches": ["https://jasmindreasond.github.io/Browser-Ponies/*", "http://jasmindreasond.github.io/Browser-Ponies/*"],
+            "matches": ["https://jasmindreasond.github.io/New-Browser-Ponies/*", "http://jasmindreasond.github.io/New-Browser-Ponies/*"],
             "js": ["js/jquery/jquery-2.1.1.js", "js/homepage.js", "js/tradutor.js"],
             "css": ["css/homepage.css"],
             "run_at": "document_end"

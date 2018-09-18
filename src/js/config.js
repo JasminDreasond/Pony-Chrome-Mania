@@ -327,9 +327,9 @@ function generatorponieslist() {
                 .replace(/source-base-JasminDreasond\(src\)=\"/g, 'src="https://raw.githubusercontent.com/JasminDreasond/Pony-Chrome-Mania/master/my_ponies/')
                 .replace(/source-base-JasminDreasond\(url\)/g, 'https://raw.githubusercontent.com/JasminDreasond/Pony-Chrome-Mania/master/my_ponies/')
 
-            .replace(/source-base\(href\)=\"/g, 'href="https://jasmindreasond.github.io/Browser-Ponies/')
-                .replace(/source-base\(src\)=\"/g, 'src="https://jasmindreasond.github.io/Browser-Ponies/')
-                .replace(/source-base\(url\)/g, 'https://jasmindreasond.github.io/Browser-Ponies/')
+            .replace(/source-base\(href\)=\"/g, 'href="https://jasmindreasond.github.io/New-Browser-Ponies/')
+                .replace(/source-base\(src\)=\"/g, 'src="https://jasmindreasond.github.io/New-Browser-Ponies/')
+                .replace(/source-base\(url\)/g, 'https://jasmindreasond.github.io/New-Browser-Ponies/')
 
             //Deviantart Generator
 

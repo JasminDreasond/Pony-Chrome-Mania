@@ -155,7 +155,7 @@ function languageset() {
 
             //panzi.github.io
 
-            if ($(location).attr('href').indexOf('https://jasmindreasond.github.io/Browser-Ponies/') > -1) {
+            if ($(location).attr('href').indexOf('https://jasmindreasond.github.io/New-Browser-Ponies/') > -1) {
 
                 $("#hasaudio").text("(Seu Navegador suporta HTML 5 Audio.)");
                 $("#noaudio").text("(Seu Navegador não suporta HTML 5 Audio.)");
@@ -520,6 +520,6 @@ function languageaction() {
 
 }
 
-if ($(location).attr('href').indexOf('https://jasmindreasond.github.io/Browser-Ponies/') > -1) {} else { $("#laguageoptions").change(function() { languageaction(); }); }
+if ($(location).attr('href').indexOf('https://jasmindreasond.github.io/New-Browser-Ponies/') > -1) {} else { $("#laguageoptions").change(function() { languageaction(); }); }
 
-if ($(location).attr('href') == 'https://jasmindreasond.github.io/Browser-Ponies/') {} else { languageset(); }
+if ($(location).attr('href') == 'https://jasmindreasond.github.io/New-Browser-Ponies/') {} else { languageset(); }

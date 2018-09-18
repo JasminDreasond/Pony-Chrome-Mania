@@ -20,7 +20,7 @@ $("#refreshsystem").click(function() {
 //Logo
 
 $("#logo").click(function() {
-    window.open('https://jasmindreasond.github.io/Browser-Ponies/', '_blank');
+    window.open('https://jasmindreasond.github.io/New-Browser-Ponies/', '_blank');
 })
 
 //Help Base
