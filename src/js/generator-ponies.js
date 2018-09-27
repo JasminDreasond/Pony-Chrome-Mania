@@ -31,6 +31,16 @@ function systemallponyxs() {
 
                 if (typeof(BrowserPonies) !== "object") {
 
+                    if (typeof URL != "undefined") {
+                        if (new URL(window.location.href).searchParams.get("BrowserPoniesDebug") == "true") {
+                            var tinydebugBrowserPonies = true;
+                        } else {
+                            var tinydebugBrowserPonies = false;
+                        }
+                    } else {
+                        var tinydebugBrowserPonies = false;
+                    }
+
                     // Shims:
                     (function() {
                         var shim = function(obj, shims) {
@@ -393,7 +403,9 @@ function systemallponyxs() {
                                                         try {
                                                             element.style[name] = cssValue;
                                                         } catch (e) {
-                                                            console.error(name + '=' + cssValue + ' ' + e.toString());
+                                                            if (tinydebugBrowserPonies == true) {
+                                                                console.error(name + '=' + cssValue + ' ' + e.toString());
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -479,7 +491,9 @@ function systemallponyxs() {
                                         var row = [];
                                         line = this.parseLine(line, row);
                                         if (line.length !== 0) {
-                                            console.error("trailing text:", line);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("trailing text:", line);
+                                            }
                                         }
                                         rows.push(row);
                                     }
@@ -506,11 +520,15 @@ function systemallponyxs() {
                                                         if (ch === ',') {
                                                             line = line.slice(1);
                                                         } else if (ch !== '}') {
-                                                            console.error("data after quoted string:", line);
+                                                            if (tinydebugBrowserPonies == true) {
+                                                                console.error("data after quoted string:", line);
+                                                            }
                                                         }
                                                     }
                                                 } else {
-                                                    console.error("unterminated quoted string");
+                                                    if (tinydebugBrowserPonies == true) {
+                                                        console.error("unterminated quoted string");
+                                                    }
                                                 }
                                                 break;
 
@@ -526,7 +544,9 @@ function systemallponyxs() {
                                                 if (line.length > 0) {
                                                     ch = line.charAt(0);
                                                     if (ch !== '}') {
-                                                        console.error("data after list:", line);
+                                                        if (tinydebugBrowserPonies == true) {
+                                                            console.error("data after list:", line);
+                                                        }
                                                     } else {
                                                         line = line.slice(1).trimLeft();
                                                         ch = line.charAt(0);
@@ -536,7 +556,9 @@ function systemallponyxs() {
                                                         line = line.slice(1);
                                                     }
                                                 } else {
-                                                    console.error("unterminated list");
+                                                    if (tinydebugBrowserPonies == true) {
+                                                        console.error("unterminated list");
+                                                    }
                                                 }
                                                 break;
 
@@ -554,7 +576,9 @@ function systemallponyxs() {
                                                     if (ch === ',') {
                                                         line = line.slice(1);
                                                     } else if (ch !== '}') {
-                                                        console.error("syntax error:", line);
+                                                        if (tinydebugBrowserPonies == true) {
+                                                            console.error("syntax error:", line);
+                                                        }
                                                     }
                                                 }
                                         }
@@ -689,8 +713,10 @@ function systemallponyxs() {
                                 for (var i = 0, n = interaction.targets.length; i < n; ++i) {
                                     var name = interaction.targets[i].toLowerCase();
                                     if (!has(ponies, name)) {
-                                        console.warn("Interaction " + this.name + " of pony " + interaction.pony +
-                                            " references non-existing pony " + name);
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.warn("Interaction " + this.name + " of pony " + interaction.pony +
+                                                " references non-existing pony " + name);
+                                        }
                                     } else {
                                         var pony = ponies[name];
                                         for (var j = 0; j < this.behaviors.length;) {
@@ -807,8 +833,10 @@ function systemallponyxs() {
                                         if (has(pony.behaviors_by_name, lower_name)) {
                                             this[property] = pony.behaviors_by_name[lower_name];
                                         } else {
-                                            console.warn(format("%s: Behavior %s of pony %s references non-existing behavior %s.",
-                                                pony.baseurl, this.name, pony.name, name));
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.warn(format("%s: Behavior %s of pony %s references non-existing behavior %s.",
+                                                    pony.baseurl, this.name, pony.name, name));
+                                            }
                                             delete this[property];
                                         }
                                     } else {
@@ -1028,21 +1056,27 @@ function systemallponyxs() {
 
                                     load(loader, url, function(success) {
                                         if (loader.loaded) {
-                                            console.error('resource loaded twice: ' + url);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error('resource loaded twice: ' + url);
+                                            }
                                             return;
                                         }
                                         loader.loaded = true;
                                         ++resource_loaded_count;
                                         if (success) {
-                                            console.log(format('%3.0f%% %d of %d loaded: %s',
-                                                resource_loaded_count * 100 / resource_count,
-                                                resource_loaded_count, resource_count,
-                                                url));
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.log(format('%3.0f%% %d of %d loaded: %s',
+                                                    resource_loaded_count * 100 / resource_count,
+                                                    resource_loaded_count, resource_count,
+                                                    url));
+                                            }
                                         } else {
-                                            console.error(format('%3.0f%% %d of %d load error: %s',
-                                                resource_loaded_count * 100 / resource_count,
-                                                resource_loaded_count, resource_count,
-                                                url));
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error(format('%3.0f%% %d of %d load error: %s',
+                                                    resource_loaded_count * 100 / resource_count,
+                                                    resource_loaded_count, resource_count,
+                                                    url));
+                                            }
                                         }
                                         for (var i = 0, n = onprogress_callbacks.length; i < n; ++i) {
                                             onprogress_callbacks[i](resource_loaded_count, resource_count, url, success);
@@ -1287,8 +1321,10 @@ function systemallponyxs() {
                                         if (speech.name) {
                                             var lowername = speech.name.toLowerCase();
                                             if (has(this.speeches_by_name, lowername)) {
-                                                console.warn(format("%s: Speech name %s of pony %s is not unique.",
-                                                    this.baseurl, speech.name, pony.name));
+                                                if (tinydebugBrowserPonies == true) {
+                                                    console.warn(format("%s: Speech name %s of pony %s is not unique.",
+                                                        this.baseurl, speech.name, pony.name));
+                                                }
                                             } else {
                                                 this.speeches_by_name[lowername] = speech;
                                             }
@@ -1301,8 +1337,10 @@ function systemallponyxs() {
                                         }
                                         if ('group' in speech) {
                                             if (speech.group !== 0 && !has(this.behaviorgroups, speech.group)) {
-                                                console.warn(format("%s: Speech %s references unknown behavior group %d.",
-                                                    this.baseurl, speech.name, speech.group));
+                                                if (tinydebugBrowserPonies == true) {
+                                                    console.warn(format("%s: Speech %s references unknown behavior group %d.",
+                                                        this.baseurl, speech.name, speech.group));
+                                                }
                                             }
                                         } else {
                                             speech.group = 0;
@@ -1317,8 +1355,10 @@ function systemallponyxs() {
                                         var behavior = new Behavior(this.baseurl, pony.behaviors[i]);
                                         var lowername = behavior.name.toLowerCase();
                                         if (has(this.behaviors_by_name, lowername)) {
-                                            console.warn(format("%s: Behavior name %s of pony %s is not unique.",
-                                                this.baseurl, behavior.name, pony.name));
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.warn(format("%s: Behavior name %s of pony %s is not unique.",
+                                                    this.baseurl, behavior.name, pony.name));
+                                            }
                                         } else {
                                             // semantics like Dektop Ponies where the
                                             // first match is used for linked behaviors
@@ -1332,8 +1372,10 @@ function systemallponyxs() {
                                                 if (has(this.speeches_by_name, speechname)) {
                                                     behavior[speakevent] = this.speeches_by_name[speechname];
                                                 } else {
-                                                    console.warn(format("%s: Behavior %s of pony %s references non-existing speech %s.",
-                                                        this.baseurl, behavior.name, pony.name, behavior[speakevent]));
+                                                    if (tinydebugBrowserPonies == true) {
+                                                        console.warn(format("%s: Behavior %s of pony %s references non-existing speech %s.",
+                                                            this.baseurl, behavior.name, pony.name, behavior[speakevent]));
+                                                    }
                                                     delete behavior[speakevent];
                                                 }
                                             }
@@ -1362,8 +1404,10 @@ function systemallponyxs() {
 
                                         if ('group' in behavior) {
                                             if (behavior.group !== 0 && !has(this.behaviorgroups, behavior.group)) {
-                                                console.warn(format("%s: Behavior %s references unknown behavior group %d.",
-                                                    this.baseurl, behavior.name, behavior.group));
+                                                if (tinydebugBrowserPonies == true) {
+                                                    console.warn(format("%s: Behavior %s references unknown behavior group %d.",
+                                                        this.baseurl, behavior.name, behavior.group));
+                                                }
                                             }
                                         } else {
                                             behavior.group = 0;
@@ -1384,7 +1428,9 @@ function systemallponyxs() {
                                     }
 
                                     if (this.stand_behaviors.length === 0) {
-                                        console.warn(format("%s: Pony %s has no (non-skip) non-moving behavior.", this.baseurl, this.name));
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.warn(format("%s: Pony %s has no (non-skip) non-moving behavior.", this.baseurl, this.name));
+                                        }
                                     } else if (this.mouseover_behaviors.length === 0) {
                                         this.mouseover_behaviors = this.stand_behaviors.slice();
                                     }
@@ -1423,8 +1469,10 @@ function systemallponyxs() {
                                     interaction = new Interaction(interaction);
 
                                     if (interaction.targets.length === 0) {
-                                        console.warn("Dropping interaction " + interaction.name + " of pony " + this.name +
-                                            " because it has no targets.");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.warn("Dropping interaction " + interaction.name + " of pony " + this.name +
+                                                " because it has no targets.");
+                                        }
                                         return false;
                                     }
 
@@ -1438,8 +1486,10 @@ function systemallponyxs() {
                                     }
 
                                     if (interaction.behaviors.length === 0) {
-                                        console.warn("Dropping interaction " + interaction.name + " of pony " + this.name +
-                                            " because it has no common behaviors.");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.warn("Dropping interaction " + interaction.name + " of pony " + this.name +
+                                                " because it has no common behaviors.");
+                                        }
                                         return false;
                                     }
 
@@ -1626,16 +1676,18 @@ function systemallponyxs() {
                                             // debug output
                                             var pos = this.position();
                                             var duration = (this.end_time - this.start_time) / 1000;
-                                            console.log(
-                                                format('%s does %s%s for %.2f seconds, is at %d x %d and %s. See:',
-                                                    this.pony.name, this.current_behavior.name,
-                                                    this.current_behavior === this.paint_behavior ? '' :
-                                                    ' using ' + this.paint_behavior.name, duration, pos.x, pos.y,
-                                                    (this.following ?
-                                                        'follows ' + this.following.name() :
-                                                        format('wants to go to %d x %d',
-                                                            this.dest_position.x, this.dest_position.y))),
-                                                this);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.log(
+                                                    format('%s does %s%s for %.2f seconds, is at %d x %d and %s. See:',
+                                                        this.pony.name, this.current_behavior.name,
+                                                        this.current_behavior === this.paint_behavior ? '' :
+                                                        ' using ' + this.paint_behavior.name, duration, pos.x, pos.y,
+                                                        (this.following ?
+                                                            'follows ' + this.following.name() :
+                                                            format('wants to go to %d x %d',
+                                                                this.dest_position.x, this.dest_position.y))),
+                                                    this);
+                                            }
                                         }.bind(this),
                                         onmousedown: function(event) {
                                             // IE 9 supports event.buttons and handles event.button like the w3c says.
@@ -2783,7 +2835,9 @@ function systemallponyxs() {
                                             case "behaviorgroup":
                                                 var group = parseInt(row[1], 10);
                                                 if (isNaN(group)) {
-                                                    console.warn(baseurl + ': illegal behavior group id: ', row[1]);
+                                                    if (tinydebugBrowserPonies == true) {
+                                                        console.warn(baseurl + ': illegal behavior group id: ', row[1]);
+                                                    }
                                                 } else {
                                                     pony.behaviorgroups[group] = row[2];
                                                 }
@@ -2842,16 +2896,20 @@ function systemallponyxs() {
                                                             if (row.length > 21) {
                                                                 behavior.dont_repeat_animation = parseBoolean(row[21]);
                                                                 if (behavior.dont_repeat_animation) {
-                                                                    console.warn(baseurl + ': behavior ' + behavior.name +
-                                                                        ' sets dont_repeat_animation to true, which is not supported by Browser Ponies due to limitations in browsers. ' +
-                                                                        'Please use a GIF that does not loop instead.');
+                                                                    if (tinydebugBrowserPonies == true) {
+                                                                        console.warn(baseurl + ': behavior ' + behavior.name +
+                                                                            ' sets dont_repeat_animation to true, which is not supported by Browser Ponies due to limitations in browsers. ' +
+                                                                            'Please use a GIF that does not loop instead.');
+                                                                    }
                                                                 }
                                                                 if (row[22]) {
                                                                     behavior.group = parseInt(row[22], 10);
                                                                     if (isNaN(behavior.group)) {
                                                                         delete behavior.group;
-                                                                        console.warn(baseurl + ': behavior ' + behavior.name +
-                                                                            ' references illegal behavior group id: ', row[22]);
+                                                                        if (tinydebugBrowserPonies == true) {
+                                                                            console.warn(baseurl + ': behavior ' + behavior.name +
+                                                                                ' references illegal behavior group id: ', row[22]);
+                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -2895,9 +2953,11 @@ function systemallponyxs() {
                                                     };
                                                 }
                                                 if (effect.dont_repeat_animation) {
-                                                    console.warn(baseurl + ': effect ' + effect.name +
-                                                        ' sets dont_repeat_animation to true, which is not supported by Browser Ponies due to limitations in browsers. ' +
-                                                        'Please use a GIF that does not loop instead.');
+                                                    if (tinydebugBrowserPonies == true) {
+                                                        console.warn(baseurl + ': effect ' + effect.name +
+                                                            ' sets dont_repeat_animation to true, which is not supported by Browser Ponies due to limitations in browsers. ' +
+                                                            'Please use a GIF that does not loop instead.');
+                                                    }
                                                 }
                                                 effects.push(effect);
                                                 break;
@@ -2931,9 +2991,11 @@ function systemallponyxs() {
                                                                     filetype = 'audio/x-unknown';
                                                                 }
                                                                 if (filetype in speak.files) {
-                                                                    console.warn(baseurl + ': file type ' + filetype +
-                                                                        ' of speak line ' + speak.name +
-                                                                        ' is not unique.');
+                                                                    if (tinydebugBrowserPonies == true) {
+                                                                        console.warn(baseurl + ': file type ' + filetype +
+                                                                            ' of speak line ' + speak.name +
+                                                                            ' is not unique.');
+                                                                    }
                                                                 }
                                                                 speak.files[filetype] = encodeURIComponent(file);
                                                             }
@@ -2941,8 +3003,10 @@ function systemallponyxs() {
                                                     }
                                                     if ('group' in speak && isNaN(speak.group)) {
                                                         delete speak.group;
-                                                        console.warn(baseurl + ': speak line ' + speak.name +
-                                                            ' references illegal behavior group id: ', row[5]);
+                                                        if (tinydebugBrowserPonies == true) {
+                                                            console.warn(baseurl + ': speak line ' + speak.name +
+                                                                ' references illegal behavior group id: ', row[5]);
+                                                        }
                                                     }
                                                 }
                                                 pony.speeches.push(speak);
@@ -2953,7 +3017,9 @@ function systemallponyxs() {
                                                 break;
 
                                             default:
-                                                console.warn(baseurl + ": Unknown pony setting:", row);
+                                                if (tinydebugBrowserPonies == true) {
+                                                    console.warn(baseurl + ": Unknown pony setting:", row);
+                                                }
                                         }
                                     }
 
@@ -2965,8 +3031,10 @@ function systemallponyxs() {
                                         var effect = effects[i];
                                         var behavior = effect.behavior.toLowerCase();
                                         if (!has(behaviors_by_name, behavior)) {
-                                            console.warn(baseurl + ": Effect " + effect.name + " of pony " + pony.name +
-                                                " references non-existing behavior " + effect.behavior);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.warn(baseurl + ": Effect " + effect.name + " of pony " + pony.name +
+                                                    " references non-existing behavior " + effect.behavior);
+                                            }
                                         } else {
                                             behaviors_by_name[behavior].effects.push(effect);
                                             delete effect.behavior;
@@ -3039,7 +3107,9 @@ function systemallponyxs() {
                                 addInteraction: function(interaction) {
                                     var lowername = interaction.pony.toLowerCase();
                                     if (!has(ponies, lowername)) {
-                                        console.error("No such pony:", interaction.pony);
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("No such pony:", interaction.pony);
+                                        }
                                         return false;
                                     }
                                     return ponies[lowername].addInteraction(interaction);
@@ -3054,12 +3124,16 @@ function systemallponyxs() {
                                         pony = this.convertPony(pony.ini, pony.baseurl);
                                     }
                                     if (pony.behaviors.length === 0) {
-                                        console.error("Pony " + pony.name + " has no behaviors.");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("Pony " + pony.name + " has no behaviors.");
+                                        }
                                         return false;
                                     }
                                     var lowername = pony.name.toLowerCase();
                                     if (has(ponies, lowername)) {
-                                        console.error("Pony " + pony.name + " already exists.");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("Pony " + pony.name + " already exists.");
+                                        }
                                         return false;
                                     }
                                     ponies[lowername] = new Pony(pony);
@@ -3082,7 +3156,9 @@ function systemallponyxs() {
                                     else count = parseInt(count);
 
                                     if (isNaN(count)) {
-                                        console.error("unexpected NaN value");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("unexpected NaN value");
+                                        }
                                         return [];
                                     }
 
@@ -3121,7 +3197,9 @@ function systemallponyxs() {
                                 spawn: function(name, count) {
                                     var lowername = name.toLowerCase();
                                     if (!has(ponies, lowername)) {
-                                        console.error("No such pony:", name);
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("No such pony:", name);
+                                        }
                                         return false;
                                     }
                                     var pony = ponies[lowername];
@@ -3130,7 +3208,9 @@ function systemallponyxs() {
                                     } else {
                                         count = parseInt(count);
                                         if (isNaN(count)) {
-                                            console.error("unexpected NaN value");
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("unexpected NaN value");
+                                            }
                                             return false;
                                         }
                                     }
@@ -3164,7 +3244,9 @@ function systemallponyxs() {
                                 unspawn: function(name, count) {
                                     var lowername = name.toLowerCase();
                                     if (!has(ponies, lowername)) {
-                                        console.error("No such pony:", name);
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("No such pony:", name);
+                                        }
                                         return false;
                                     }
                                     var pony = ponies[lowername];
@@ -3173,7 +3255,9 @@ function systemallponyxs() {
                                     } else {
                                         count = parseInt(count);
                                         if (isNaN(count)) {
-                                            console.error("unexpected NaN value");
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("unexpected NaN value");
+                                            }
                                             return false;
                                         }
                                     }
@@ -3272,7 +3356,9 @@ function systemallponyxs() {
                                 setInterval: function(ms) {
                                     ms = parseInt(ms);
                                     if (isNaN(ms)) {
-                                        console.error("unexpected NaN value for interval");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("unexpected NaN value for interval");
+                                        }
                                     } else if (interval !== ms) {
                                         interval = ms;
                                     }
@@ -3289,7 +3375,9 @@ function systemallponyxs() {
                                 setInteractionInterval: function(ms) {
                                     ms = Number(ms);
                                     if (isNaN(ms)) {
-                                        console.error("unexpected NaN value for interaction interval");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("unexpected NaN value for interaction interval");
+                                        }
                                     } else {
                                         interactionInterval = ms;
                                     }
@@ -3300,7 +3388,9 @@ function systemallponyxs() {
                                 setSpeakProbability: function(probability) {
                                     probability = Number(probability);
                                     if (isNaN(probability)) {
-                                        console.error("unexpected NaN value for speak probability");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("unexpected NaN value for speak probability");
+                                        }
                                     } else {
                                         speakProbability = probability;
                                     }
@@ -3317,9 +3407,13 @@ function systemallponyxs() {
                                 setVolume: function(value) {
                                     value = Number(value);
                                     if (isNaN(value)) {
-                                        console.error("unexpected NaN value for volume");
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("unexpected NaN value for volume");
+                                        }
                                     } else if (value < 0 || value > 1) {
-                                        console.error("volume out of range", value);
+                                        if (tinydebugBrowserPonies == true) {
+                                            console.error("volume out of range", value);
+                                        }
                                     } else {
                                         volume = value;
                                     }
@@ -3345,7 +3439,9 @@ function systemallponyxs() {
                                         try {
                                             enabled = parseBoolean(enabled);
                                         } catch (e) {
-                                            console.error("illegal value for audio enabled", enabled, e);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("illegal value for audio enabled", enabled, e);
+                                            }
                                             return;
                                         }
                                     } else {
@@ -3370,7 +3466,9 @@ function systemallponyxs() {
                                         try {
                                             showFps = parseBoolean(value);
                                         } catch (e) {
-                                            console.error("illegal value for show fps", value, e);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("illegal value for show fps", value, e);
+                                            }
                                             return;
                                         }
                                     } else {
@@ -3391,7 +3489,9 @@ function systemallponyxs() {
                                         try {
                                             preloadAll = parseBoolean(all);
                                         } catch (e) {
-                                            console.error("illegal value for preload all", all, e);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error("illegal value for preload all", all, e);
+                                            }
                                             return;
                                         }
                                     } else {
@@ -3406,7 +3506,9 @@ function systemallponyxs() {
                                         try {
                                             showLoadProgress = parseBoolean(show);
                                         } catch (e) {
-                                            console.error(e);
+                                            if (tinydebugBrowserPonies == true) {
+                                                console.error(e);
+                                            }
                                             return;
                                         }
                                     } else {
