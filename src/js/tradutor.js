@@ -157,6 +157,8 @@ function languageset() {
 
             if ($(location).attr('href').indexOf('https://jasmindreasond.github.io/New-Browser-Ponies/') > -1) {
 
+                $("h2:contains(Debug Mode)").text("Modo Debug");
+                $("p:contains(You need insert the Url Parameter)").html(["Você precisa inserir o parâmetro de url ", $("<strong>").append($("<a>", { href: "./index.html?BrowserPoniesDebug=true" }).text("BrowserPoniesDebug=true")), " dentro da url para habilitar a depuração do console."]);
                 $("#hasaudio").text("(Seu Navegador suporta HTML 5 Audio.)");
                 $("#noaudio").text("(Seu Navegador não suporta HTML 5 Audio.)");
                 $("[for='iframe-width']").text("Largura:");
@@ -165,8 +167,7 @@ function languageset() {
                 $("[for='addcat']").text("Categoria de Filtros");
                 $("[for='paddock']").text("Mostrar Paddock");
                 $("[for='grass']").text("Mostrar Grama");
-                $("[onclick='setAllZero();']").text("Setar todos os pôneis para 0");
-                $("[onclick='setAllZero();']").text("Setar todos os pôneis para 0");
+                $("#setallzero").text("Setar todos os pôneis para 0");
                 $("p:contains(Choose your ponies belown and then drag this link into your Bookmark Toolbar:)").text("Escolha seus pôneis abaixo e depois puxe este link para dentro da sua barra de Favoritos:");
                 $("#bookmarklet").text("Pôneis!");
                 $("p:contains(Click it whenever you feel a website needs more ponies.)").text("Clicle quando você sentir que um site precisa de mais pôneis.");

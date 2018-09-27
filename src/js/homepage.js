@@ -85,7 +85,7 @@ if ($(location).attr('href').indexOf('?editormode') > -1) {
     $("p:contains(As a third option you can also embed the files directly)").addClass('hide');
     $("h4:contains(Your Interacions:)").addClass('hide');
     $("p:contains(Base URL:)").addClass('hide');
-    $("[onclick='inisToJS();']").addClass('hide');
+    $("#inistojs").addClass('hide');
     $("p:contains(your-ponies.js:)").addClass('hide');
     $("h2:contains(Download)").addClass('hide');
     $("p:contains(You can download the source without images/sounds here)").addClass('hide');
